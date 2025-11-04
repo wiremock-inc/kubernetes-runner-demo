@@ -16,9 +16,11 @@ The mock APIs are synchronized from WireMock Cloud and can be managed through th
 - Kubernetes cluster (local or remote)
   - For local development, [KIND](https://kind.sigs.k8s.io/) is recommended
 - `kubectl` CLI tool installed and configured
-- WireMock Cloud account and API token
+- WireMock CLI installed and configured
+  - Install from [https://www.wiremock.io/docs/cli](https://www.wiremock.io/docs/cli)
+  - Authenticate with `wiremock login` or configure your API token with `wiremock config set api-token <your-token>`
+- WireMock Cloud account
   - Sign up at [https://www.wiremock.io/cloud](https://www.wiremock.io/cloud)
-  - Get your API token from the WireMock Cloud dashboard
 
 ### Optional: Set up a local KIND cluster
 
@@ -39,13 +41,26 @@ kubectl cluster-info
 
 ### 1. Set up WireMock Cloud API Token
 
-First, create a Kubernetes secret with your WireMock Cloud API token (which you can find in the [WireMock Cloud console](https://app.wiremock.cloud/account/security)):
+First, ensure you're authenticated with the WireMock CLI:
 
 ```bash
-./set-secret.sh <your-wmc-api-token>
+wiremock login
 ```
 
-This creates a secret named `wiremock-cloud-token` that will be used by the WireMock Runner to authenticate with WireMock Cloud.
+Then create a Kubernetes secret with your WireMock Cloud API token:
+
+```bash
+./set-secret.sh
+```
+
+This script retrieves your API token from the WireMock CLI configuration and creates a secret named `wiremock-cloud-token` that will be used by the WireMock Runner to authenticate with WireMock Cloud.
+
+**Note:** If you haven't logged in with the WireMock CLI, you'll need to do this first:
+```bash
+wiremock login
+```
+
+Your API token can be found in the [WireMock Cloud console](https://app.wiremock.cloud/account/security).
 
 ### 2. Configure Mock APIs
 
@@ -100,27 +115,18 @@ Then access:
 - PayPal Invoicing mock: http://localhost:8080
 - GitHub REST mock: http://localhost:8081
 
-### Ingress Access
-
-The project includes two ingress configurations:
-
-#### Path-based Ingress (default)
-
-Access services via paths on `wiremock.local`:
-- Admin API: http://wiremock.local/admin
-- PayPal mock: http://wiremock.local/paypal
-- GitHub mock: http://wiremock.local/github
+### Accessing the services
 
 #### Host-based Ingress (alternative)
 
 Access services via subdomains:
-- Admin API: http://admin.wiremock.local
-- PayPal mock: http://paypal.wiremock.local
-- GitHub mock: http://github.wiremock.local
+- Admin API: http://admin.local.wiremock.cloud
+- PayPal mock: http://paypal.local.wiremock.cloud
+- GitHub mock: http://github.local.wiremock.cloud
 
-**Note:** For local development, add these entries to your `/etc/hosts`:
+**Note:** For local development, you may need to add these entries to your `/etc/hosts` (or `/private/etc/hosts` on OSX) as some DNS hosts don't seem to support wildcards properly:
 ```
-127.0.0.1 wiremock.local admin.wiremock.local paypal.wiremock.local github.wiremock.local
+127.0.0.1 admin.local.wiremock.cloud paypal.local.wiremock.cloud github.local.wiremock.cloud
 ```
 
 ## Monitoring
