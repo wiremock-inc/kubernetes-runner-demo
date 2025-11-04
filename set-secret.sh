@@ -4,14 +4,21 @@
 
 set -e
 
-if [ -z "$1" ]; then
-  echo "Usage: $0 <wmc-api-token>"
+echo "Retrieving WireMock Cloud API token from local configuration..."
+
+# Get the API token from the WireMock CLI config
+WMC_API_TOKEN=$(wiremock config get api-token)
+
+if [ -z "$WMC_API_TOKEN" ]; then
+  echo "Error: No API token found in WireMock CLI configuration."
   echo ""
-  echo "Example: $0 your-api-token-here"
+  echo "Please configure your API token first using:"
+  echo "  wiremock login"
+  echo ""
+  echo "Or manually set it with:"
+  echo "  wiremock config set api-token <your-token>"
   exit 1
 fi
-
-WMC_API_TOKEN="$1"
 
 echo "Creating/updating Kubernetes secret for WireMock Cloud API token..."
 
