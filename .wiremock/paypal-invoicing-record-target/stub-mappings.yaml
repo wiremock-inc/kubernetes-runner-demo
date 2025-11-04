@@ -84,7 +84,6 @@ mappings:
         via: "IMPORT"
         by: "zg5ll"
       response-example-attachment: "Get v2 invoicing invoices by invoiceId"
-  insertionIndex: 0
 - id: "9d085868-34a2-40d0-95c8-cb3b9b3526aa"
   name: "Get v2 invoicing invoices - formatted"
   request:
@@ -708,7 +707,6 @@ mappings:
         via: "IMPORT"
         by: "zg5ll"
       response-example-attachment: "Get v2 invoicing invoices - formatted"
-  insertionIndex: 0
   postServeActions: []
   serveEventListeners: []
 - id: "0d461db5-5846-4660-bc80-81591beb3549"
@@ -774,10 +772,3 @@ mappings:
         via: "IMPORT"
         by: "zg5ll"
       response-example-attachment: "Create v1 oauth2 token"
-  insertionIndex: 0
-meta:
-  start: 1
-  end: 3
-  total: 3
-  page: 1
-  totalPages: 1

@@ -359,10 +359,3 @@ mappings:
         via: "IMPORT"
         by: "zg5ll"
       response-example-attachment: "Get users"
-  insertionIndex: 0
-meta:
-  start: 1
-  end: 1
-  total: 1
-  page: 1
-  totalPages: 1
