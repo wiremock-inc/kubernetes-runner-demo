@@ -1,0 +1,783 @@
+---
+mappings:
+- id: "13931743-122a-4b12-a7a6-2b2e4d8bf0cb"
+  name: "Get v2 invoicing invoices by invoiceId"
+  request:
+    urlPathTemplate: "/v2/invoicing/invoices/{invoiceId}"
+    method: "GET"
+    pathParameters:
+      invoiceId:
+        equalTo: "INV2-JDH6-MQXR-ZXH4-NWY7"
+  response:
+    status: 200
+    body: "{\"id\":\"INV2-JDH6-MQXR-ZXH4-NWY7\",\"status\":\"DRAFT\",\"detail\":{\"\
+      reference\":\"<The reference data. Includes a post office (PO) number.>\",\"\
+      currency_code\":\"USD\",\"note\":\"<A note to the invoice recipient. Also appears\
+      \ on the invoice notification email.>\",\"terms_and_conditions\":\"<The general\
+      \ terms of the invoice. Can include return or cancellation policy and other\
+      \ terms and conditions.>\",\"memo\":\"<A private bookkeeping note for merchant.>\"\
+      ,\"additional_data\":\"<Any additional information. Includes business hours.>\"\
+      ,\"category_code\":\"SHIPPABLE\",\"invoice_number\":\"1750929409575\",\"invoice_date\"\
+      :\"2022-02-04\",\"payment_term\":{\"term_type\":\"NET_10\",\"due_date\":\"2022-02-14\"\
+      },\"viewed_by_recipient\":false,\"group_draft\":false,\"metadata\":{\"create_time\"\
+      :\"2025-06-26T09:16:49Z\",\"last_update_time\":\"2025-06-26T09:16:49Z\",\"created_by_flow\"\
+      :\"REGULAR_SINGLE\",\"recipient_view_url\":\"https://www.sandbox.paypal.com/invoice/p/#JDH6MQXRZXH4NWY7\"\
+      ,\"invoicer_view_url\":\"https://www.sandbox.paypal.com/invoice/details/INV2-JDH6-MQXR-ZXH4-NWY7\"\
+      ,\"caller_type\":\"API_V2_INVOICE\",\"spam_info\":{}},\"archived\":false},\"\
+      invoicer\":{\"name\":{\"given_name\":\"David\",\"surname\":\"Larusso\",\"full_name\"\
+      :\"David Larusso\"},\"address\":{\"address_line_1\":\"123 Townsend St\",\"address_line_2\"\
+      :\"Floor 6\",\"admin_area_2\":\"San Francisco\",\"admin_area_1\":\"CA\",\"postal_code\"\
+      :\"94107\",\"country_code\":\"US\"},\"phones\":[{\"country_code\":\"001\",\"\
+      national_number\":\"4085551234\",\"phone_type\":\"MOBILE\"}],\"website\":\"\
+      www.example.com\",\"tax_id\":\"XX-XXXXXXX\",\"additional_notes\":\"<Any additional\
+      \ information. Includes business hours.>\",\"logo_url\":\"https://example.com/logo.png\"\
+      },\"primary_recipients\":[{\"billing_info\":{\"name\":{\"given_name\":\"Stephanie\"\
+      ,\"surname\":\"Meyers\",\"full_name\":\"Stephanie Meyers\"},\"address\":{\"\
+      address_line_1\":\"1234 Main Street\",\"admin_area_2\":\"Anytown\",\"admin_area_1\"\
+      :\"CA\",\"postal_code\":\"98765\",\"country_code\":\"US\"},\"email_address\"\
+      :\"foobuyer@example.com\"},\"shipping_info\":{\"name\":{\"given_name\":\"Stephanie\"\
+      ,\"surname\":\"Meyers\",\"full_name\":\"Stephanie Meyers\"},\"address\":{\"\
+      address_line_1\":\"1234 Main Street\",\"admin_area_2\":\"Anytown\",\"admin_area_1\"\
+      :\"CA\",\"postal_code\":\"98765\",\"country_code\":\"US\"}}}],\"items\":[{\"\
+      id\":\"ITEM-555649919X1756543\",\"name\":\"Yoga Mat\",\"description\":\"Elastic\
+      \ mat to practice yoga.\",\"quantity\":\"1\",\"unit_amount\":{\"currency_code\"\
+      :\"USD\",\"value\":\"50.00\"},\"tax\":{\"id\":\"TAX-44X75095YK250753B\",\"name\"\
+      :\"Sales Tax\",\"percent\":\"7.25\",\"amount\":{\"currency_code\":\"USD\",\"\
+      value\":\"3.27\"}},\"discount\":{\"percent\":\"5\",\"amount\":{\"currency_code\"\
+      :\"USD\",\"value\":\"-2.50\"}},\"unit_of_measure\":\"QUANTITY\"},{\"id\":\"\
+      ITEM-7P311592VK142334D\",\"name\":\"Yoga t-shirt\",\"quantity\":\"1\",\"unit_amount\"\
+      :{\"currency_code\":\"USD\",\"value\":\"10.00\"},\"tax\":{\"id\":\"TAX-44X75095YK250753B\"\
+      ,\"name\":\"Sales Tax\",\"percent\":\"7.25\",\"amount\":{\"currency_code\":\"\
+      USD\",\"value\":\"0.34\"}},\"discount\":{\"amount\":{\"currency_code\":\"USD\"\
+      ,\"value\":\"-5.00\"}},\"unit_of_measure\":\"QUANTITY\"}],\"configuration\"\
+      :{\"tax_calculated_after_discount\":true,\"tax_inclusive\":false,\"allow_tip\"\
+      :true,\"partial_payment\":{\"allow_partial_payment\":true,\"minimum_amount_due\"\
+      :{\"currency_code\":\"USD\",\"value\":\"20.00\"}},\"allow_only_pay_by_bank\"\
+      :false,\"allow_vba_payments\":false,\"template_id\":\"TEMP-19W86504SY384583V\"\
+      },\"amount\":{\"breakdown\":{\"item_total\":{\"currency_code\":\"USD\",\"value\"\
+      :\"60.00\"},\"discount\":{\"invoice_discount\":{\"percent\":\"5\",\"amount\"\
+      :{\"currency_code\":\"USD\",\"value\":\"-2.63\"}},\"item_discount\":{\"currency_code\"\
+      :\"USD\",\"value\":\"-7.50\"}},\"tax_total\":{\"currency_code\":\"USD\",\"value\"\
+      :\"4.34\"},\"shipping\":{\"amount\":{\"currency_code\":\"USD\",\"value\":\"\
+      10.00\"},\"tax\":{\"id\":\"TAX-44X75095YK250753B\",\"name\":\"Sales Tax\",\"\
+      percent\":\"7.25\",\"amount\":{\"currency_code\":\"USD\",\"value\":\"0.73\"\
+      }}},\"custom\":{\"label\":\"Packing Charges\",\"amount\":{\"currency_code\"\
+      :\"USD\",\"value\":\"10.00\"}}},\"currency_code\":\"USD\",\"value\":\"74.21\"\
+      },\"due_amount\":{\"currency_code\":\"USD\",\"value\":\"74.21\"},\"links\":[{\"\
+      href\":\"https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7\"\
+      ,\"rel\":\"self\",\"method\":\"GET\"},{\"href\":\"https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7/send\"\
+      ,\"rel\":\"send\",\"method\":\"POST\"},{\"href\":\"https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7\"\
+      ,\"rel\":\"replace\",\"method\":\"PUT\"},{\"href\":\"https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7\"\
+      ,\"rel\":\"delete\",\"method\":\"DELETE\"},{\"href\":\"https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7/payments\"\
+      ,\"rel\":\"record-payment\",\"method\":\"POST\"}],\"unilateral\":false}"
+    headers:
+      Strict-Transport-Security: "max-age=31536000; includeSubDomains"
+      Cache-Control: "max-age=0, no-cache, no-store, must-revalidate"
+      Vary: "Accept-Encoding"
+      Content-Type: "application/json"
+  uuid: "13931743-122a-4b12-a7a6-2b2e4d8bf0cb"
+  persistent: true
+  metadata:
+    mocklab:
+      created:
+        at: "2025-10-29T19:20:35.095893506Z"
+        via: "IMPORT"
+        by: "zg5ll"
+      response-example-attachment: "Get v2 invoicing invoices by invoiceId"
+  insertionIndex: 0
+- id: "9d085868-34a2-40d0-95c8-cb3b9b3526aa"
+  name: "Get v2 invoicing invoices - formatted"
+  request:
+    urlPathTemplate: "/v2/invoicing/invoices"
+    method: "GET"
+    pathParameters: {}
+    queryParameters:
+      page:
+        equalTo: "1"
+      page_size:
+        equalTo: "10"
+      total_required:
+        equalTo: "true"
+      fields:
+        equalTo: "amount"
+    formParameters: {}
+  response:
+    status: 200
+    body: |
+      {
+        "total_pages": 524398,
+        "total_items": 5243976,
+        "items": [
+          {
+            "id": "INV2-CXRZ-UANY-7WDW-SBXL",
+            "status": "DRAFT",
+            "detail": {
+              "reference": "<The reference data. Includes a post office (PO) number.>",
+              "currency_code": "USD",
+              "note": "<A note to the invoice recipient. Also appears on the invoice notification email.>",
+              "memo": "<A private bookkeeping note for merchant.>",
+              "invoice_number": "1761699820",
+              "invoice_date": "2022-02-04",
+              "payment_term": { "due_date": "2022-02-14" },
+              "viewed_by_recipient": false,
+              "group_draft": false,
+              "metadata": { "create_time": "2025-10-29T02:00:53Z" }
+            },
+            "primary_recipients": [
+              {
+                "billing_info": {
+                  "name": {
+                    "given_name": "Stephanie",
+                    "surname": "Meyers",
+                    "full_name": "Stephanie Meyers"
+                  },
+                  "email_address": "foobuyer@example.com"
+                },
+                "shipping_info": {
+                  "name": {
+                    "given_name": "Stephanie",
+                    "surname": "Meyers",
+                    "full_name": "Stephanie Meyers"
+                  }
+                }
+              }
+            ],
+            "amount": { "currency_code": "USD", "value": "74.21" },
+            "due_amount": { "currency_code": "USD", "value": "74.21" },
+            "links": [
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL",
+                "rel": "self",
+                "method": "GET"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL/send",
+                "rel": "send",
+                "method": "POST"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL",
+                "rel": "replace",
+                "method": "PUT"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL",
+                "rel": "delete",
+                "method": "DELETE"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL/payments",
+                "rel": "record-payment",
+                "method": "POST"
+              }
+            ],
+            "unilateral": false
+          },
+          {
+            "id": "INV2-ZR78-4F2Y-78PJ-RX5M",
+            "status": "DRAFT",
+            "detail": {
+              "currency_code": "USD",
+              "note": "Sandbox bulk seed",
+              "invoice_number": "INV-A-0000634199-6S",
+              "invoice_date": "2025-10-28",
+              "payment_term": { "due_date": "2025-01-18" },
+              "viewed_by_recipient": false,
+              "group_draft": false,
+              "metadata": { "create_time": "2025-10-28T22:17:52Z" }
+            },
+            "primary_recipients": [
+              {
+                "billing_info": {
+                  "name": {
+                    "given_name": "Test",
+                    "surname": "Buyer",
+                    "full_name": "Test Buyer"
+                  },
+                  "email_address": "b634199@ex.com"
+                }
+              }
+            ],
+            "amount": { "currency_code": "USD", "value": "101.45" },
+            "due_amount": { "currency_code": "USD", "value": "101.45" },
+            "links": [
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-ZR78-4F2Y-78PJ-RX5M",
+                "rel": "self",
+                "method": "GET"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-ZR78-4F2Y-78PJ-RX5M/send",
+                "rel": "send",
+                "method": "POST"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-ZR78-4F2Y-78PJ-RX5M",
+                "rel": "replace",
+                "method": "PUT"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-ZR78-4F2Y-78PJ-RX5M",
+                "rel": "delete",
+                "method": "DELETE"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-ZR78-4F2Y-78PJ-RX5M/payments",
+                "rel": "record-payment",
+                "method": "POST"
+              }
+            ],
+            "unilateral": false
+          },
+          {
+            "id": "INV2-9VSC-LQSW-A6ZF-PLAW",
+            "status": "DRAFT",
+            "detail": {
+              "currency_code": "USD",
+              "note": "Sandbox bulk seed",
+              "invoice_number": "INV-A-0000634203-4B",
+              "invoice_date": "2025-10-28",
+              "payment_term": { "due_date": "2024-12-27" },
+              "viewed_by_recipient": false,
+              "group_draft": false,
+              "metadata": { "create_time": "2025-10-28T22:17:52Z" }
+            },
+            "primary_recipients": [
+              {
+                "billing_info": {
+                  "name": {
+                    "given_name": "Test",
+                    "surname": "Buyer",
+                    "full_name": "Test Buyer"
+                  },
+                  "email_address": "b634203@ex.com"
+                }
+              }
+            ],
+            "amount": { "currency_code": "USD", "value": "47.85" },
+            "due_amount": { "currency_code": "USD", "value": "47.85" },
+            "links": [
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-9VSC-LQSW-A6ZF-PLAW",
+                "rel": "self",
+                "method": "GET"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-9VSC-LQSW-A6ZF-PLAW/send",
+                "rel": "send",
+                "method": "POST"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-9VSC-LQSW-A6ZF-PLAW",
+                "rel": "replace",
+                "method": "PUT"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-9VSC-LQSW-A6ZF-PLAW",
+                "rel": "delete",
+                "method": "DELETE"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-9VSC-LQSW-A6ZF-PLAW/payments",
+                "rel": "record-payment",
+                "method": "POST"
+              }
+            ],
+            "unilateral": false
+          },
+          {
+            "id": "INV2-REWE-TQ4T-EZZZ-JAHC",
+            "status": "DRAFT",
+            "detail": {
+              "currency_code": "USD",
+              "note": "Sandbox bulk seed",
+              "invoice_number": "INV-A-0000634204-GJ",
+              "invoice_date": "2025-10-28",
+              "payment_term": { "due_date": "2025-08-19" },
+              "viewed_by_recipient": false,
+              "group_draft": false,
+              "metadata": { "create_time": "2025-10-28T22:17:52Z" }
+            },
+            "primary_recipients": [
+              {
+                "billing_info": {
+                  "name": {
+                    "given_name": "Test",
+                    "surname": "Buyer",
+                    "full_name": "Test Buyer"
+                  },
+                  "email_address": "b634204@ex.com"
+                }
+              }
+            ],
+            "amount": { "currency_code": "USD", "value": "129.23" },
+            "due_amount": { "currency_code": "USD", "value": "129.23" },
+            "links": [
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-REWE-TQ4T-EZZZ-JAHC",
+                "rel": "self",
+                "method": "GET"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-REWE-TQ4T-EZZZ-JAHC/send",
+                "rel": "send",
+                "method": "POST"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-REWE-TQ4T-EZZZ-JAHC",
+                "rel": "replace",
+                "method": "PUT"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-REWE-TQ4T-EZZZ-JAHC",
+                "rel": "delete",
+                "method": "DELETE"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-REWE-TQ4T-EZZZ-JAHC/payments",
+                "rel": "record-payment",
+                "method": "POST"
+              }
+            ],
+            "unilateral": false
+          },
+          {
+            "id": "INV2-96WF-KDRT-6BMN-VYTG",
+            "status": "DRAFT",
+            "detail": {
+              "currency_code": "USD",
+              "note": "Sandbox bulk seed",
+              "invoice_number": "INV-A-0000634205-9S",
+              "invoice_date": "2025-10-28",
+              "payment_term": { "due_date": "2025-09-25" },
+              "viewed_by_recipient": false,
+              "group_draft": false,
+              "metadata": { "create_time": "2025-10-28T22:17:52Z" }
+            },
+            "primary_recipients": [
+              {
+                "billing_info": {
+                  "name": {
+                    "given_name": "Test",
+                    "surname": "Buyer",
+                    "full_name": "Test Buyer"
+                  },
+                  "email_address": "b634205@ex.com"
+                }
+              }
+            ],
+            "amount": { "currency_code": "USD", "value": "210.71" },
+            "due_amount": { "currency_code": "USD", "value": "210.71" },
+            "links": [
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-96WF-KDRT-6BMN-VYTG",
+                "rel": "self",
+                "method": "GET"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-96WF-KDRT-6BMN-VYTG/send",
+                "rel": "send",
+                "method": "POST"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-96WF-KDRT-6BMN-VYTG",
+                "rel": "replace",
+                "method": "PUT"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-96WF-KDRT-6BMN-VYTG",
+                "rel": "delete",
+                "method": "DELETE"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-96WF-KDRT-6BMN-VYTG/payments",
+                "rel": "record-payment",
+                "method": "POST"
+              }
+            ],
+            "unilateral": false
+          },
+          {
+            "id": "INV2-XG9T-RQF2-8K7J-AT3Q",
+            "status": "DRAFT",
+            "detail": {
+              "currency_code": "USD",
+              "note": "Sandbox bulk seed",
+              "invoice_number": "INV-A-0000634206-D5",
+              "invoice_date": "2025-10-28",
+              "payment_term": { "due_date": "2024-11-06" },
+              "viewed_by_recipient": false,
+              "group_draft": false,
+              "metadata": { "create_time": "2025-10-28T22:17:52Z" }
+            },
+            "primary_recipients": [
+              {
+                "billing_info": {
+                  "name": {
+                    "given_name": "Test",
+                    "surname": "Buyer",
+                    "full_name": "Test Buyer"
+                  },
+                  "email_address": "b634206@ex.com"
+                }
+              }
+            ],
+            "amount": { "currency_code": "USD", "value": "34.17" },
+            "due_amount": { "currency_code": "USD", "value": "34.17" },
+            "links": [
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XG9T-RQF2-8K7J-AT3Q",
+                "rel": "self",
+                "method": "GET"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XG9T-RQF2-8K7J-AT3Q/send",
+                "rel": "send",
+                "method": "POST"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XG9T-RQF2-8K7J-AT3Q",
+                "rel": "replace",
+                "method": "PUT"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XG9T-RQF2-8K7J-AT3Q",
+                "rel": "delete",
+                "method": "DELETE"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XG9T-RQF2-8K7J-AT3Q/payments",
+                "rel": "record-payment",
+                "method": "POST"
+              }
+            ],
+            "unilateral": false
+          },
+          {
+            "id": "INV2-XNQU-8YJD-P46P-P7Z7",
+            "status": "DRAFT",
+            "detail": {
+              "currency_code": "USD",
+              "note": "Sandbox bulk seed",
+              "invoice_number": "INV-A-0000634207-EF",
+              "invoice_date": "2025-10-28",
+              "payment_term": { "due_date": "2024-12-20" },
+              "viewed_by_recipient": false,
+              "group_draft": false,
+              "metadata": { "create_time": "2025-10-28T22:17:52Z" }
+            },
+            "primary_recipients": [
+              {
+                "billing_info": {
+                  "name": {
+                    "given_name": "Test",
+                    "surname": "Buyer",
+                    "full_name": "Test Buyer"
+                  },
+                  "email_address": "b634207@ex.com"
+                }
+              }
+            ],
+            "amount": { "currency_code": "USD", "value": "229.19" },
+            "due_amount": { "currency_code": "USD", "value": "229.19" },
+            "links": [
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XNQU-8YJD-P46P-P7Z7",
+                "rel": "self",
+                "method": "GET"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XNQU-8YJD-P46P-P7Z7/send",
+                "rel": "send",
+                "method": "POST"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XNQU-8YJD-P46P-P7Z7",
+                "rel": "replace",
+                "method": "PUT"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XNQU-8YJD-P46P-P7Z7",
+                "rel": "delete",
+                "method": "DELETE"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XNQU-8YJD-P46P-P7Z7/payments",
+                "rel": "record-payment",
+                "method": "POST"
+              }
+            ],
+            "unilateral": false
+          },
+          {
+            "id": "INV2-LXGR-V95R-8EHA-4H27",
+            "status": "DRAFT",
+            "detail": {
+              "currency_code": "USD",
+              "note": "Sandbox bulk seed",
+              "invoice_number": "INV-A-0000634208-G9",
+              "invoice_date": "2025-10-28",
+              "payment_term": { "due_date": "2024-12-28" },
+              "viewed_by_recipient": false,
+              "group_draft": false,
+              "metadata": { "create_time": "2025-10-28T22:17:52Z" }
+            },
+            "primary_recipients": [
+              {
+                "billing_info": {
+                  "name": {
+                    "given_name": "Test",
+                    "surname": "Buyer",
+                    "full_name": "Test Buyer"
+                  },
+                  "email_address": "b634208@ex.com"
+                }
+              }
+            ],
+            "amount": { "currency_code": "USD", "value": "123.93" },
+            "due_amount": { "currency_code": "USD", "value": "123.93" },
+            "links": [
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-LXGR-V95R-8EHA-4H27",
+                "rel": "self",
+                "method": "GET"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-LXGR-V95R-8EHA-4H27/send",
+                "rel": "send",
+                "method": "POST"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-LXGR-V95R-8EHA-4H27",
+                "rel": "replace",
+                "method": "PUT"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-LXGR-V95R-8EHA-4H27",
+                "rel": "delete",
+                "method": "DELETE"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-LXGR-V95R-8EHA-4H27/payments",
+                "rel": "record-payment",
+                "method": "POST"
+              }
+            ],
+            "unilateral": false
+          },
+          {
+            "id": "INV2-5PNV-CRW9-WLQS-6AWB",
+            "status": "DRAFT",
+            "detail": {
+              "currency_code": "USD",
+              "note": "Sandbox bulk seed",
+              "invoice_number": "INV-A-0000634209-73",
+              "invoice_date": "2025-10-28",
+              "payment_term": { "due_date": "2025-07-03" },
+              "viewed_by_recipient": false,
+              "group_draft": false,
+              "metadata": { "create_time": "2025-10-28T22:17:52Z" }
+            },
+            "primary_recipients": [
+              {
+                "billing_info": {
+                  "name": {
+                    "given_name": "Test",
+                    "surname": "Buyer",
+                    "full_name": "Test Buyer"
+                  },
+                  "email_address": "b634209@ex.com"
+                }
+              }
+            ],
+            "amount": { "currency_code": "USD", "value": "157.33" },
+            "due_amount": { "currency_code": "USD", "value": "157.33" },
+            "links": [
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5PNV-CRW9-WLQS-6AWB",
+                "rel": "self",
+                "method": "GET"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5PNV-CRW9-WLQS-6AWB/send",
+                "rel": "send",
+                "method": "POST"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5PNV-CRW9-WLQS-6AWB",
+                "rel": "replace",
+                "method": "PUT"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5PNV-CRW9-WLQS-6AWB",
+                "rel": "delete",
+                "method": "DELETE"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5PNV-CRW9-WLQS-6AWB/payments",
+                "rel": "record-payment",
+                "method": "POST"
+              }
+            ],
+            "unilateral": false
+          },
+          {
+            "id": "INV2-5MQB-T6XH-MZKH-6VAB",
+            "status": "DRAFT",
+            "detail": {
+              "currency_code": "USD",
+              "note": "Sandbox bulk seed",
+              "invoice_number": "INV-A-0000634211-BU",
+              "invoice_date": "2025-10-28",
+              "payment_term": { "due_date": "2025-09-29" },
+              "viewed_by_recipient": false,
+              "group_draft": false,
+              "metadata": { "create_time": "2025-10-28T22:17:52Z" }
+            },
+            "primary_recipients": [
+              {
+                "billing_info": {
+                  "name": {
+                    "given_name": "Test",
+                    "surname": "Buyer",
+                    "full_name": "Test Buyer"
+                  },
+                  "email_address": "b634211@ex.com"
+                }
+              }
+            ],
+            "amount": { "currency_code": "USD", "value": "87.52" },
+            "due_amount": { "currency_code": "USD", "value": "87.52" },
+            "links": [
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5MQB-T6XH-MZKH-6VAB",
+                "rel": "self",
+                "method": "GET"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5MQB-T6XH-MZKH-6VAB/send",
+                "rel": "send",
+                "method": "POST"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5MQB-T6XH-MZKH-6VAB",
+                "rel": "replace",
+                "method": "PUT"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5MQB-T6XH-MZKH-6VAB",
+                "rel": "delete",
+                "method": "DELETE"
+              },
+              {
+                "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5MQB-T6XH-MZKH-6VAB/payments",
+                "rel": "record-payment",
+                "method": "POST"
+              }
+            ],
+            "unilateral": false
+          }
+        ],
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices?page=1&page_size=10&total_required=true",
+            "rel": "self",
+            "method": "GET"
+          },
+          {
+            "href": "https://api.sandbox.paypal.com/v2/invoicing/invoices?page=2&page_size=10&total_required=true",
+            "rel": "next",
+            "method": "GET"
+          }
+        ]
+      }
+    headers:
+      Strict-Transport-Security: "max-age=31536000; includeSubDomains"
+      Cache-Control: "max-age=0, no-cache, no-store, must-revalidate"
+      Vary: "Accept-Encoding"
+      Content-Type: "application/json"
+    transformerParameters:
+      graphQlMockDataTransformerParameters: {}
+  uuid: "9d085868-34a2-40d0-95c8-cb3b9b3526aa"
+  persistent: true
+  priority: 5
+  metadata:
+    mocklab:
+      created:
+        at: "2025-10-29T11:22:55.413883764Z"
+        via: "IMPORT"
+        by: "zg5ll"
+      response-example-attachment: "Get v2 invoicing invoices - formatted"
+  insertionIndex: 0
+  postServeActions: []
+  serveEventListeners: []
+- id: "0d461db5-5846-4660-bc80-81591beb3549"
+  name: "Create v1 oauth2 token"
+  request:
+    urlPathTemplate: "/v1/oauth2/token"
+    method: "POST"
+    bodyPatterns:
+    - equalTo: "grant_type=client_credentials"
+      caseInsensitive: false
+  response:
+    status: 200
+    body: "{\"scope\":\"https://uri.paypal.com/services/payments/partnerfee https://uri.paypal.com/services/vault/payment-tokens/read\
+      \ https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment\
+      \ https://uri.paypal.com/services/customer/partner-referrals https://uri.paypal.com/services/customer/onboarding/user\
+      \ https://uri.paypal.com/services/payments/referenced-payouts/read https://uri.paypal.com/services/disputes/update-buyer\
+      \ https://uri.paypal.com/services/vault/carrier-accounts/update https://uri.paypal.com/services/wallet/bank-accounts/read\
+      \ https://uri.paypal.com/services/reporting/search/read https://uri.paypal.com/services/wallet/balance-accounts/read\
+      \ https://uri.paypal.com/services/wallet/bank-accounts/internal-read https://uri.paypal.com/services/customer/partner\
+      \ https://uri.paypal.com/services/vault/payment-tokens/readwrite https://uri.paypal.com/services/customer/merchant-integrations/read\
+      \ https://uri.paypal.com/services/customer/verification-tokens/readwrite https://uri.paypal.com/v1/billing-agreements/agreementlist\
+      \ https://uri.paypal.com/services/vault/carrier-accounts/view https://uri.paypal.com/services/applications/webhooks\
+      \ https://uri.paypal.com/services/vault/restricted-elements/read https://uri.paypal.com/services/disputes/update-seller\
+      \ openid https://uri.paypal.com/services/payments/payment/authcapture https://api.paypal.com/v1/vault/bank-accounts\
+      \ https://uri.paypal.com/services/billing-agreements/agreements/cancel https://uri.paypal.com/services/identity/grantdelegation\
+      \ https://uri.paypal.com/services/credit/active-merchant-financing-options https://uri.paypal.com/services/billing-agreements\
+      \ https://uri.paypal.com/services/payments/referenced-payouts/readwrite https://uri.paypal.com/services/customer/onboarding/applications\
+      \ https://uri.paypal.com/services/customer/onboarding/account https://uri.paypal.com/services/vault/customers/readwrite\
+      \ https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/disputes/update-partner\
+      \ https://uri.paypal.com/services/customer/partner-referrals/readwrite https://uri.paypal.com/services/invoicing\
+      \ https://uri.paypal.com/services/checkout/one-click-with-merchant-issued-token\
+      \ https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/credit/credit-financing-options-low-access\
+      \ https://uri.paypal.com/services/disputes/read-partner https://api.paypal.com/v1/vault/credit-card\
+      \ https://uri.paypal.com/services/apis/batch https://api.paypal.com/v1/payments/.*\
+      \ https://uri.paypal.com/services/payments/referenced-payouts-items/readwrite\
+      \ https://uri.paypal.com/services/wallet/bank-accounts/internal-update https://uri.paypal.com/services/applications/verify-webhook-signature\
+      \ https://uri.paypal.com/services/payments/channelpartner https://api.paypal.com/v1/payments/refund\
+      \ https://uri.paypal.com/services/credit/credit-financing-options https://uri.paypal.com/services/payments/reversepayment\
+      \ Braintree:Vault https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/referenced-payouts-items/read\
+      \ https://uri.paypal.com/services/payments/refund https://uri.paypal.com/services/risk/raas/transaction-context\
+      \ https://uri.paypal.com/services/vault/customers/read https://uri.paypal.com/services/disputes/create\
+      \ https://uri.paypal.com/services/customer/consumer-referrals/create https://uri.paypal.com/services/partners/merchant-accounts/readwrite\
+      \ https://uri.paypal.com/services/customer/supporting-documents/readwrite https://uri.paypal.com/services/customer/onboarding/sessions\
+      \ https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/shipping/trackers/readwrite\
+      \ https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/wallet/bank-accounts/partner-update\
+      \ https://uri.paypal.com/services/wallet/bank-accounts/update\",\"access_token\"\
+      :\"A21AAKj1eZbh1Zjic5FEC7C77QmoN9Ldwb0TM_qkOw1FpVinkuj9OGRKF96fVf7-iVojMvjlSQqa0HByAeFCaRfVnfocBAuEg\"\
+      ,\"token_type\":\"Bearer\",\"app_id\":\"APP-80W284485P519543T\",\"expires_in\"\
+      :31474,\"nonce\":\"2025-10-29T11:02:14ZiO1qFQ3aDQN0OC-quLZX5aH57olOxr9OQyBBKrSxZWA\"\
+      }"
+    headers:
+      Pragma: "no-cache"
+      Strict-Transport-Security: "max-age=31536000; includeSubDomains"
+      Cache-Control: "max-age=0, no-cache, no-store, must-revalidate"
+      Vary: "Accept-Encoding"
+      Content-Type: "application/json"
+  uuid: "0d461db5-5846-4660-bc80-81591beb3549"
+  persistent: true
+  metadata:
+    mocklab:
+      created:
+        at: "2025-10-29T11:17:53.097913017Z"
+        via: "IMPORT"
+        by: "zg5ll"
+      response-example-attachment: "Create v1 oauth2 token"
+  insertionIndex: 0
+meta:
+  start: 1
+  end: 3
+  total: 3
+  page: 1
+  totalPages: 1

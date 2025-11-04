@@ -1,0 +1,2426 @@
+openapi: "3.0.1"
+info:
+  title: "PayPal invoicing record target"
+  version: "1.0.0"
+servers:
+- url: https://24gzy.wiremockapi.cloud
+paths:
+  /v2/invoicing/invoices:
+    get:
+      operationId: "getV2InvoicingInvoices"
+      summary: "Get v2 invoicing invoices."
+      parameters:
+      - in: "query"
+        name: "page"
+        schema:
+          type: "string"
+        required: true
+        example: |-
+          1
+      - in: "query"
+        name: "page_size"
+        schema:
+          type: "string"
+        required: true
+        example: |-
+          10
+      - in: "query"
+        name: "total_required"
+        schema:
+          type: "string"
+        required: true
+        example: |-
+          true
+      - in: "query"
+        name: "fields"
+        schema:
+          type: "string"
+        required: true
+        example: |-
+          amount
+      responses:
+        '401':
+          description: "401 GET v2 invoicing invoices"
+          content:
+            application/json:
+              examples:
+                401 GET v2 invoicing invoices:
+                  value: |-
+                    {
+                      "name" : "AUTHENTICATION_FAILURE",
+                      "message" : "Authentication failed due to invalid authentication credentials or a missing Authorization header.",
+                      "links" : [ {
+                        "href" : "https://developer.paypal.com/docs/api/overview/#error",
+                        "rel" : "information_link"
+                      } ]
+                    }
+                  x-parameter-values:
+                    page: "1"
+                    page_size: "10"
+                    total_required: "true"
+                    fields: "amount"
+              schema:
+                required:
+                - links
+                - message
+                - name
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: AUTHENTICATION_FAILURE
+                  message:
+                    type: string
+                    example: Authentication failed due to invalid authentication credentials or a missing Authorization header.
+                  links:
+                    type: array
+                    items:
+                      required:
+                      - href
+                      - rel
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                          example: https://developer.paypal.com/docs/api/overview/#error
+                        rel:
+                          type: string
+                          example: information_link
+                x-wiremock-hash: 1707113984
+        '200':
+          description: "Get v2 invoicing invoices - formatted"
+          content:
+            application/json:
+              examples:
+                '1':
+                  value: |-
+                    {
+                      "total_pages" : 268975,
+                      "total_items" : 2689742,
+                      "items" : [ {
+                        "id" : "INV2-XXVJ-6TBR-2BR6-ZKQ7",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000422056-TF",
+                          "invoice_date" : "2025-10-17",
+                          "payment_term" : {
+                            "due_date" : "2025-01-09"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-17T14:20:12Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b422056@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "121.44"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "121.44"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XXVJ-6TBR-2BR6-ZKQ7",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XXVJ-6TBR-2BR6-ZKQ7/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XXVJ-6TBR-2BR6-ZKQ7",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XXVJ-6TBR-2BR6-ZKQ7",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XXVJ-6TBR-2BR6-ZKQ7/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-KYH9-QRUH-2LKH-E3WW",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000422064-9D",
+                          "invoice_date" : "2025-10-17",
+                          "payment_term" : {
+                            "due_date" : "2025-08-16"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-17T14:20:12Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b422064@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "41.89"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "41.89"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-KYH9-QRUH-2LKH-E3WW",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-KYH9-QRUH-2LKH-E3WW/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-KYH9-QRUH-2LKH-E3WW",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-KYH9-QRUH-2LKH-E3WW",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-KYH9-QRUH-2LKH-E3WW/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-S46E-K7UK-MBE9-2UTU",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000422065-LW",
+                          "invoice_date" : "2025-10-17",
+                          "payment_term" : {
+                            "due_date" : "2025-01-29"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-17T14:20:12Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b422065@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "28.40"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "28.40"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-S46E-K7UK-MBE9-2UTU",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-S46E-K7UK-MBE9-2UTU/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-S46E-K7UK-MBE9-2UTU",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-S46E-K7UK-MBE9-2UTU",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-S46E-K7UK-MBE9-2UTU/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-MD2G-8WFF-2PCN-PDCF",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000422066-ZL",
+                          "invoice_date" : "2025-10-17",
+                          "payment_term" : {
+                            "due_date" : "2025-07-18"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-17T14:20:12Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b422066@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "210.70"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "210.70"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-MD2G-8WFF-2PCN-PDCF",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-MD2G-8WFF-2PCN-PDCF/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-MD2G-8WFF-2PCN-PDCF",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-MD2G-8WFF-2PCN-PDCF",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-MD2G-8WFF-2PCN-PDCF/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-8X5S-6QLK-5LU4-UPHY",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000422067-4S",
+                          "invoice_date" : "2025-10-17",
+                          "payment_term" : {
+                            "due_date" : "2025-05-18"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-17T14:20:12Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b422067@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "70.16"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "70.16"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-8X5S-6QLK-5LU4-UPHY",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-8X5S-6QLK-5LU4-UPHY/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-8X5S-6QLK-5LU4-UPHY",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-8X5S-6QLK-5LU4-UPHY",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-8X5S-6QLK-5LU4-UPHY/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-NLLX-D2ZB-Y4BT-WWFF",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000422068-FA",
+                          "invoice_date" : "2025-10-17",
+                          "payment_term" : {
+                            "due_date" : "2025-01-29"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-17T14:20:12Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b422068@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "212.59"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "212.59"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-NLLX-D2ZB-Y4BT-WWFF",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-NLLX-D2ZB-Y4BT-WWFF/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-NLLX-D2ZB-Y4BT-WWFF",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-NLLX-D2ZB-Y4BT-WWFF",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-NLLX-D2ZB-Y4BT-WWFF/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-5WHP-LXY8-KNGJ-HEVY",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000422069-OH",
+                          "invoice_date" : "2025-10-17",
+                          "payment_term" : {
+                            "due_date" : "2025-08-30"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-17T14:20:12Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b422069@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "31.10"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "31.10"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5WHP-LXY8-KNGJ-HEVY",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5WHP-LXY8-KNGJ-HEVY/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5WHP-LXY8-KNGJ-HEVY",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5WHP-LXY8-KNGJ-HEVY",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5WHP-LXY8-KNGJ-HEVY/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-3PVX-KEU8-KKYP-JBEP",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000422070-ZU",
+                          "invoice_date" : "2025-10-17",
+                          "payment_term" : {
+                            "due_date" : "2025-04-15"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-17T14:20:12Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b422070@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "220.51"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "220.51"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-3PVX-KEU8-KKYP-JBEP",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-3PVX-KEU8-KKYP-JBEP/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-3PVX-KEU8-KKYP-JBEP",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-3PVX-KEU8-KKYP-JBEP",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-3PVX-KEU8-KKYP-JBEP/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-23Z6-MD3M-BZPP-SW2W",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000422071-0P",
+                          "invoice_date" : "2025-10-17",
+                          "payment_term" : {
+                            "due_date" : "2025-05-20"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-17T14:20:12Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b422071@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "193.35"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "193.35"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-23Z6-MD3M-BZPP-SW2W",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-23Z6-MD3M-BZPP-SW2W/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-23Z6-MD3M-BZPP-SW2W",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-23Z6-MD3M-BZPP-SW2W",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-23Z6-MD3M-BZPP-SW2W/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-Y4UT-J5TU-RPVG-QQC7",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000422073-Y0",
+                          "invoice_date" : "2025-10-17",
+                          "payment_term" : {
+                            "due_date" : "2025-08-03"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-17T14:20:12Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b422073@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "108.69"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "108.69"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-Y4UT-J5TU-RPVG-QQC7",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-Y4UT-J5TU-RPVG-QQC7/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-Y4UT-J5TU-RPVG-QQC7",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-Y4UT-J5TU-RPVG-QQC7",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-Y4UT-J5TU-RPVG-QQC7/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      } ],
+                      "links" : [ {
+                        "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices?page=1&page_size=10&total_required=true",
+                        "rel" : "self",
+                        "method" : "GET"
+                      }, {
+                        "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices?page=2&page_size=10&total_required=true",
+                        "rel" : "next",
+                        "method" : "GET"
+                      } ]
+                    }
+                  x-parameter-values:
+                    page: "1"
+                    page_size: "10"
+                    total_required: "true"
+                    fields: "amount"
+                Get v2 invoicing invoices:
+                  value: |-
+                    {
+                      "total_pages" : 524398,
+                      "total_items" : 5243976,
+                      "items" : [ {
+                        "id" : "INV2-CXRZ-UANY-7WDW-SBXL",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "reference" : "<The reference data. Includes a post office (PO) number.>",
+                          "currency_code" : "USD",
+                          "note" : "<A note to the invoice recipient. Also appears on the invoice notification email.>",
+                          "memo" : "<A private bookkeeping note for merchant.>",
+                          "invoice_number" : "1761699820",
+                          "invoice_date" : "2022-02-04",
+                          "payment_term" : {
+                            "due_date" : "2022-02-14"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-29T02:00:53Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Stephanie",
+                              "surname" : "Meyers",
+                              "full_name" : "Stephanie Meyers"
+                            },
+                            "email_address" : "foobuyer@example.com"
+                          },
+                          "shipping_info" : {
+                            "name" : {
+                              "given_name" : "Stephanie",
+                              "surname" : "Meyers",
+                              "full_name" : "Stephanie Meyers"
+                            }
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "74.21"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "74.21"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-ZR78-4F2Y-78PJ-RX5M",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000634199-6S",
+                          "invoice_date" : "2025-10-28",
+                          "payment_term" : {
+                            "due_date" : "2025-01-18"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-28T22:17:52Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b634199@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "101.45"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "101.45"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-ZR78-4F2Y-78PJ-RX5M",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-ZR78-4F2Y-78PJ-RX5M/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-ZR78-4F2Y-78PJ-RX5M",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-ZR78-4F2Y-78PJ-RX5M",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-ZR78-4F2Y-78PJ-RX5M/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-9VSC-LQSW-A6ZF-PLAW",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000634203-4B",
+                          "invoice_date" : "2025-10-28",
+                          "payment_term" : {
+                            "due_date" : "2024-12-27"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-28T22:17:52Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b634203@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "47.85"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "47.85"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-9VSC-LQSW-A6ZF-PLAW",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-9VSC-LQSW-A6ZF-PLAW/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-9VSC-LQSW-A6ZF-PLAW",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-9VSC-LQSW-A6ZF-PLAW",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-9VSC-LQSW-A6ZF-PLAW/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-REWE-TQ4T-EZZZ-JAHC",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000634204-GJ",
+                          "invoice_date" : "2025-10-28",
+                          "payment_term" : {
+                            "due_date" : "2025-08-19"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-28T22:17:52Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b634204@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "129.23"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "129.23"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-REWE-TQ4T-EZZZ-JAHC",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-REWE-TQ4T-EZZZ-JAHC/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-REWE-TQ4T-EZZZ-JAHC",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-REWE-TQ4T-EZZZ-JAHC",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-REWE-TQ4T-EZZZ-JAHC/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-96WF-KDRT-6BMN-VYTG",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000634205-9S",
+                          "invoice_date" : "2025-10-28",
+                          "payment_term" : {
+                            "due_date" : "2025-09-25"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-28T22:17:52Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b634205@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "210.71"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "210.71"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-96WF-KDRT-6BMN-VYTG",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-96WF-KDRT-6BMN-VYTG/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-96WF-KDRT-6BMN-VYTG",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-96WF-KDRT-6BMN-VYTG",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-96WF-KDRT-6BMN-VYTG/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-XG9T-RQF2-8K7J-AT3Q",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000634206-D5",
+                          "invoice_date" : "2025-10-28",
+                          "payment_term" : {
+                            "due_date" : "2024-11-06"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-28T22:17:52Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b634206@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "34.17"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "34.17"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XG9T-RQF2-8K7J-AT3Q",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XG9T-RQF2-8K7J-AT3Q/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XG9T-RQF2-8K7J-AT3Q",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XG9T-RQF2-8K7J-AT3Q",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XG9T-RQF2-8K7J-AT3Q/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-XNQU-8YJD-P46P-P7Z7",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000634207-EF",
+                          "invoice_date" : "2025-10-28",
+                          "payment_term" : {
+                            "due_date" : "2024-12-20"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-28T22:17:52Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b634207@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "229.19"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "229.19"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XNQU-8YJD-P46P-P7Z7",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XNQU-8YJD-P46P-P7Z7/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XNQU-8YJD-P46P-P7Z7",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XNQU-8YJD-P46P-P7Z7",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-XNQU-8YJD-P46P-P7Z7/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-LXGR-V95R-8EHA-4H27",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000634208-G9",
+                          "invoice_date" : "2025-10-28",
+                          "payment_term" : {
+                            "due_date" : "2024-12-28"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-28T22:17:52Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b634208@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "123.93"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "123.93"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-LXGR-V95R-8EHA-4H27",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-LXGR-V95R-8EHA-4H27/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-LXGR-V95R-8EHA-4H27",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-LXGR-V95R-8EHA-4H27",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-LXGR-V95R-8EHA-4H27/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-5PNV-CRW9-WLQS-6AWB",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000634209-73",
+                          "invoice_date" : "2025-10-28",
+                          "payment_term" : {
+                            "due_date" : "2025-07-03"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-28T22:17:52Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b634209@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "157.33"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "157.33"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5PNV-CRW9-WLQS-6AWB",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5PNV-CRW9-WLQS-6AWB/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5PNV-CRW9-WLQS-6AWB",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5PNV-CRW9-WLQS-6AWB",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5PNV-CRW9-WLQS-6AWB/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      }, {
+                        "id" : "INV2-5MQB-T6XH-MZKH-6VAB",
+                        "status" : "DRAFT",
+                        "detail" : {
+                          "currency_code" : "USD",
+                          "note" : "Sandbox bulk seed",
+                          "invoice_number" : "INV-A-0000634211-BU",
+                          "invoice_date" : "2025-10-28",
+                          "payment_term" : {
+                            "due_date" : "2025-09-29"
+                          },
+                          "viewed_by_recipient" : false,
+                          "group_draft" : false,
+                          "metadata" : {
+                            "create_time" : "2025-10-28T22:17:52Z"
+                          }
+                        },
+                        "primary_recipients" : [ {
+                          "billing_info" : {
+                            "name" : {
+                              "given_name" : "Test",
+                              "surname" : "Buyer",
+                              "full_name" : "Test Buyer"
+                            },
+                            "email_address" : "b634211@ex.com"
+                          }
+                        } ],
+                        "amount" : {
+                          "currency_code" : "USD",
+                          "value" : "87.52"
+                        },
+                        "due_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "87.52"
+                        },
+                        "links" : [ {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5MQB-T6XH-MZKH-6VAB",
+                          "rel" : "self",
+                          "method" : "GET"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5MQB-T6XH-MZKH-6VAB/send",
+                          "rel" : "send",
+                          "method" : "POST"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5MQB-T6XH-MZKH-6VAB",
+                          "rel" : "replace",
+                          "method" : "PUT"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5MQB-T6XH-MZKH-6VAB",
+                          "rel" : "delete",
+                          "method" : "DELETE"
+                        }, {
+                          "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-5MQB-T6XH-MZKH-6VAB/payments",
+                          "rel" : "record-payment",
+                          "method" : "POST"
+                        } ],
+                        "unilateral" : false
+                      } ],
+                      "links" : [ {
+                        "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices?page=1&page_size=10&total_required=true",
+                        "rel" : "self",
+                        "method" : "GET"
+                      }, {
+                        "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices?page=2&page_size=10&total_required=true",
+                        "rel" : "next",
+                        "method" : "GET"
+                      } ]
+                    }
+                  x-parameter-values:
+                    page: "1"
+                    page_size: "10"
+                    total_required: "true"
+                    fields: "amount"
+              schema:
+                required:
+                - items
+                - links
+                - total_items
+                - total_pages
+                type: object
+                properties:
+                  total_pages:
+                    type: integer
+                    format: int32
+                    example: 524398
+                  total_items:
+                    type: integer
+                    format: int32
+                    example: 5243976
+                  items:
+                    type: array
+                    items:
+                      required:
+                      - amount
+                      - detail
+                      - due_amount
+                      - id
+                      - links
+                      - primary_recipients
+                      - status
+                      - unilateral
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: INV2-CXRZ-UANY-7WDW-SBXL
+                        status:
+                          type: string
+                          example: DRAFT
+                        detail:
+                          required:
+                          - currency_code
+                          - group_draft
+                          - invoice_date
+                          - invoice_number
+                          - metadata
+                          - note
+                          - payment_term
+                          - viewed_by_recipient
+                          type: object
+                          properties:
+                            reference:
+                              type: string
+                              example: <The reference data. Includes a post office (PO) number.>
+                            currency_code:
+                              type: string
+                              example: USD
+                            note:
+                              type: string
+                              example: <A note to the invoice recipient. Also appears on the invoice notification email.>
+                            memo:
+                              type: string
+                              example: <A private bookkeeping note for merchant.>
+                            invoice_number:
+                              type: string
+                              example: "1761699820"
+                            invoice_date:
+                              type: string
+                              example: 2022-02-04
+                            payment_term:
+                              required:
+                              - due_date
+                              type: object
+                              properties:
+                                due_date:
+                                  type: string
+                                  example: 2022-02-14
+                            viewed_by_recipient:
+                              type: boolean
+                              example: false
+                            group_draft:
+                              type: boolean
+                              example: false
+                            metadata:
+                              required:
+                              - create_time
+                              type: object
+                              properties:
+                                create_time:
+                                  type: string
+                                  example: 2025-10-29T02:00:53Z
+                        primary_recipients:
+                          type: array
+                          items:
+                            required:
+                            - billing_info
+                            type: object
+                            properties:
+                              billing_info:
+                                required:
+                                - email_address
+                                - name
+                                type: object
+                                properties:
+                                  name:
+                                    required:
+                                    - full_name
+                                    - given_name
+                                    - surname
+                                    type: object
+                                    properties:
+                                      given_name:
+                                        type: string
+                                        example: Stephanie
+                                      surname:
+                                        type: string
+                                        example: Meyers
+                                      full_name:
+                                        type: string
+                                        example: Stephanie Meyers
+                                  email_address:
+                                    type: string
+                                    example: foobuyer@example.com
+                              shipping_info:
+                                required:
+                                - name
+                                type: object
+                                properties:
+                                  name:
+                                    required:
+                                    - full_name
+                                    - given_name
+                                    - surname
+                                    type: object
+                                    properties:
+                                      given_name:
+                                        type: string
+                                        example: Stephanie
+                                      surname:
+                                        type: string
+                                        example: Meyers
+                                      full_name:
+                                        type: string
+                                        example: Stephanie Meyers
+                        amount:
+                          required:
+                          - currency_code
+                          - value
+                          type: object
+                          properties:
+                            currency_code:
+                              type: string
+                              example: USD
+                            value:
+                              type: string
+                              example: "74.21"
+                        due_amount:
+                          required:
+                          - currency_code
+                          - value
+                          type: object
+                          properties:
+                            currency_code:
+                              type: string
+                              example: USD
+                            value:
+                              type: string
+                              example: "74.21"
+                        links:
+                          type: array
+                          items:
+                            required:
+                            - href
+                            - method
+                            - rel
+                            type: object
+                            properties:
+                              href:
+                                type: string
+                                example: https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-CXRZ-UANY-7WDW-SBXL
+                              rel:
+                                type: string
+                                example: self
+                              method:
+                                type: string
+                                example: GET
+                        unilateral:
+                          type: boolean
+                          example: false
+                  links:
+                    type: array
+                    items:
+                      required:
+                      - href
+                      - method
+                      - rel
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                          example: https://api.sandbox.paypal.com/v2/invoicing/invoices?page=1&page_size=10&total_required=true
+                        rel:
+                          type: string
+                          example: self
+                        method:
+                          type: string
+                          example: GET
+                x-wiremock-hash: -467917513
+      description: "Get v2 invoicing invoices."
+  /v1/oauth2/token:
+    post:
+      operationId: "postV1Oauth2Token"
+      summary: "Post v1 oauth2 token."
+      parameters: [
+        ]
+      responses:
+        '200':
+          description: "Create v1 oauth2 token"
+          content:
+            application/json:
+              examples:
+                Create v1 oauth2 token:
+                  value: |-
+                    {
+                      "scope" : "https://uri.paypal.com/services/payments/partnerfee https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/customer/partner-referrals https://uri.paypal.com/services/customer/onboarding/user https://uri.paypal.com/services/payments/referenced-payouts/read https://uri.paypal.com/services/disputes/update-buyer https://uri.paypal.com/services/vault/carrier-accounts/update https://uri.paypal.com/services/wallet/bank-accounts/read https://uri.paypal.com/services/reporting/search/read https://uri.paypal.com/services/wallet/balance-accounts/read https://uri.paypal.com/services/wallet/bank-accounts/internal-read https://uri.paypal.com/services/customer/partner https://uri.paypal.com/services/vault/payment-tokens/readwrite https://uri.paypal.com/services/customer/merchant-integrations/read https://uri.paypal.com/services/customer/verification-tokens/readwrite https://uri.paypal.com/v1/billing-agreements/agreementlist https://uri.paypal.com/services/vault/carrier-accounts/view https://uri.paypal.com/services/applications/webhooks https://uri.paypal.com/services/vault/restricted-elements/read https://uri.paypal.com/services/disputes/update-seller openid https://uri.paypal.com/services/payments/payment/authcapture https://api.paypal.com/v1/vault/bank-accounts https://uri.paypal.com/services/billing-agreements/agreements/cancel https://uri.paypal.com/services/identity/grantdelegation https://uri.paypal.com/services/credit/active-merchant-financing-options https://uri.paypal.com/services/billing-agreements https://uri.paypal.com/services/payments/referenced-payouts/readwrite https://uri.paypal.com/services/customer/onboarding/applications https://uri.paypal.com/services/customer/onboarding/account https://uri.paypal.com/services/vault/customers/readwrite https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/disputes/update-partner https://uri.paypal.com/services/customer/partner-referrals/readwrite https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/checkout/one-click-with-merchant-issued-token https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/credit/credit-financing-options-low-access https://uri.paypal.com/services/disputes/read-partner https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/apis/batch https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/payments/referenced-payouts-items/readwrite https://uri.paypal.com/services/wallet/bank-accounts/internal-update https://uri.paypal.com/services/applications/verify-webhook-signature https://uri.paypal.com/services/payments/channelpartner https://api.paypal.com/v1/payments/refund https://uri.paypal.com/services/credit/credit-financing-options https://uri.paypal.com/services/payments/reversepayment Braintree:Vault https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/referenced-payouts-items/read https://uri.paypal.com/services/payments/refund https://uri.paypal.com/services/risk/raas/transaction-context https://uri.paypal.com/services/vault/customers/read https://uri.paypal.com/services/disputes/create https://uri.paypal.com/services/customer/consumer-referrals/create https://uri.paypal.com/services/partners/merchant-accounts/readwrite https://uri.paypal.com/services/customer/supporting-documents/readwrite https://uri.paypal.com/services/customer/onboarding/sessions https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/shipping/trackers/readwrite https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/wallet/bank-accounts/partner-update https://uri.paypal.com/services/wallet/bank-accounts/update",
+                      "access_token" : "A21AAKj1eZbh1Zjic5FEC7C77QmoN9Ldwb0TM_qkOw1FpVinkuj9OGRKF96fVf7-iVojMvjlSQqa0HByAeFCaRfVnfocBAuEg",
+                      "token_type" : "Bearer",
+                      "app_id" : "APP-80W284485P519543T",
+                      "expires_in" : 31474,
+                      "nonce" : "2025-10-29T11:02:14ZiO1qFQ3aDQN0OC-quLZX5aH57olOxr9OQyBBKrSxZWA"
+                    }
+              schema:
+                required:
+                - access_token
+                - app_id
+                - expires_in
+                - nonce
+                - scope
+                - token_type
+                type: object
+                properties:
+                  scope:
+                    type: string
+                    example: https://uri.paypal.com/services/payments/partnerfee https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/customer/partner-referrals https://uri.paypal.com/services/customer/onboarding/user https://uri.paypal.com/services/payments/referenced-payouts/read https://uri.paypal.com/services/disputes/update-buyer https://uri.paypal.com/services/vault/carrier-accounts/update https://uri.paypal.com/services/wallet/bank-accounts/read https://uri.paypal.com/services/reporting/search/read https://uri.paypal.com/services/wallet/balance-accounts/read https://uri.paypal.com/services/wallet/bank-accounts/internal-read https://uri.paypal.com/services/customer/partner https://uri.paypal.com/services/vault/payment-tokens/readwrite https://uri.paypal.com/services/customer/merchant-integrations/read https://uri.paypal.com/services/customer/verification-tokens/readwrite https://uri.paypal.com/v1/billing-agreements/agreementlist https://uri.paypal.com/services/vault/carrier-accounts/view https://uri.paypal.com/services/applications/webhooks https://uri.paypal.com/services/vault/restricted-elements/read https://uri.paypal.com/services/disputes/update-seller openid https://uri.paypal.com/services/payments/payment/authcapture https://api.paypal.com/v1/vault/bank-accounts https://uri.paypal.com/services/billing-agreements/agreements/cancel https://uri.paypal.com/services/identity/grantdelegation https://uri.paypal.com/services/credit/active-merchant-financing-options https://uri.paypal.com/services/billing-agreements https://uri.paypal.com/services/payments/referenced-payouts/readwrite https://uri.paypal.com/services/customer/onboarding/applications https://uri.paypal.com/services/customer/onboarding/account https://uri.paypal.com/services/vault/customers/readwrite https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/disputes/update-partner https://uri.paypal.com/services/customer/partner-referrals/readwrite https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/checkout/one-click-with-merchant-issued-token https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/credit/credit-financing-options-low-access https://uri.paypal.com/services/disputes/read-partner https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/apis/batch https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/payments/referenced-payouts-items/readwrite https://uri.paypal.com/services/wallet/bank-accounts/internal-update https://uri.paypal.com/services/applications/verify-webhook-signature https://uri.paypal.com/services/payments/channelpartner https://api.paypal.com/v1/payments/refund https://uri.paypal.com/services/credit/credit-financing-options https://uri.paypal.com/services/payments/reversepayment Braintree:Vault https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/referenced-payouts-items/read https://uri.paypal.com/services/payments/refund https://uri.paypal.com/services/risk/raas/transaction-context https://uri.paypal.com/services/vault/customers/read https://uri.paypal.com/services/disputes/create https://uri.paypal.com/services/customer/consumer-referrals/create https://uri.paypal.com/services/partners/merchant-accounts/readwrite https://uri.paypal.com/services/customer/supporting-documents/readwrite https://uri.paypal.com/services/customer/onboarding/sessions https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/shipping/trackers/readwrite https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/wallet/bank-accounts/partner-update https://uri.paypal.com/services/wallet/bank-accounts/update
+                  access_token:
+                    type: string
+                    example: A21AAKj1eZbh1Zjic5FEC7C77QmoN9Ldwb0TM_qkOw1FpVinkuj9OGRKF96fVf7-iVojMvjlSQqa0HByAeFCaRfVnfocBAuEg
+                  token_type:
+                    type: string
+                    example: Bearer
+                  app_id:
+                    type: string
+                    example: APP-80W284485P519543T
+                  expires_in:
+                    type: integer
+                    format: int32
+                    example: 31474
+                  nonce:
+                    type: string
+                    example: 2025-10-29T11:02:14ZiO1qFQ3aDQN0OC-quLZX5aH57olOxr9OQyBBKrSxZWA
+                x-wiremock-hash: -1570707945
+      description: "Post v1 oauth2 token."
+  /v2/invoicing/invoices/{invoiceId}:
+    get:
+      operationId: "getV2InvoicingInvoicesByInvoiceId"
+      summary: "Get v2 invoicing invoices by invoiceId."
+      parameters:
+      - in: "path"
+        name: "invoiceId"
+        schema:
+          type: "string"
+        required: true
+        example: |-
+          INV2-JDH6-MQXR-ZXH4-NWY7
+      responses:
+        '200':
+          description: "Get v2 invoicing invoices by invoiceId"
+          content:
+            application/json:
+              examples:
+                Get v2 invoicing invoices by invoiceId:
+                  value: |-
+                    {
+                      "id" : "INV2-JDH6-MQXR-ZXH4-NWY7",
+                      "status" : "DRAFT",
+                      "detail" : {
+                        "reference" : "<The reference data. Includes a post office (PO) number.>",
+                        "currency_code" : "USD",
+                        "note" : "<A note to the invoice recipient. Also appears on the invoice notification email.>",
+                        "terms_and_conditions" : "<The general terms of the invoice. Can include return or cancellation policy and other terms and conditions.>",
+                        "memo" : "<A private bookkeeping note for merchant.>",
+                        "additional_data" : "<Any additional information. Includes business hours.>",
+                        "category_code" : "SHIPPABLE",
+                        "invoice_number" : "1750929409575",
+                        "invoice_date" : "2022-02-04",
+                        "payment_term" : {
+                          "term_type" : "NET_10",
+                          "due_date" : "2022-02-14"
+                        },
+                        "viewed_by_recipient" : false,
+                        "group_draft" : false,
+                        "metadata" : {
+                          "create_time" : "2025-06-26T09:16:49Z",
+                          "last_update_time" : "2025-06-26T09:16:49Z",
+                          "created_by_flow" : "REGULAR_SINGLE",
+                          "recipient_view_url" : "https://www.sandbox.paypal.com/invoice/p/#JDH6MQXRZXH4NWY7",
+                          "invoicer_view_url" : "https://www.sandbox.paypal.com/invoice/details/INV2-JDH6-MQXR-ZXH4-NWY7",
+                          "caller_type" : "API_V2_INVOICE",
+                          "spam_info" : { }
+                        },
+                        "archived" : false
+                      },
+                      "invoicer" : {
+                        "name" : {
+                          "given_name" : "David",
+                          "surname" : "Larusso",
+                          "full_name" : "David Larusso"
+                        },
+                        "address" : {
+                          "address_line_1" : "123 Townsend St",
+                          "address_line_2" : "Floor 6",
+                          "admin_area_2" : "San Francisco",
+                          "admin_area_1" : "CA",
+                          "postal_code" : "94107",
+                          "country_code" : "US"
+                        },
+                        "phones" : [ {
+                          "country_code" : "001",
+                          "national_number" : "4085551234",
+                          "phone_type" : "MOBILE"
+                        } ],
+                        "website" : "www.example.com",
+                        "tax_id" : "XX-XXXXXXX",
+                        "additional_notes" : "<Any additional information. Includes business hours.>",
+                        "logo_url" : "https://example.com/logo.png"
+                      },
+                      "primary_recipients" : [ {
+                        "billing_info" : {
+                          "name" : {
+                            "given_name" : "Stephanie",
+                            "surname" : "Meyers",
+                            "full_name" : "Stephanie Meyers"
+                          },
+                          "address" : {
+                            "address_line_1" : "1234 Main Street",
+                            "admin_area_2" : "Anytown",
+                            "admin_area_1" : "CA",
+                            "postal_code" : "98765",
+                            "country_code" : "US"
+                          },
+                          "email_address" : "foobuyer@example.com"
+                        },
+                        "shipping_info" : {
+                          "name" : {
+                            "given_name" : "Stephanie",
+                            "surname" : "Meyers",
+                            "full_name" : "Stephanie Meyers"
+                          },
+                          "address" : {
+                            "address_line_1" : "1234 Main Street",
+                            "admin_area_2" : "Anytown",
+                            "admin_area_1" : "CA",
+                            "postal_code" : "98765",
+                            "country_code" : "US"
+                          }
+                        }
+                      } ],
+                      "items" : [ {
+                        "id" : "ITEM-555649919X1756543",
+                        "name" : "Yoga Mat",
+                        "description" : "Elastic mat to practice yoga.",
+                        "quantity" : "1",
+                        "unit_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "50.00"
+                        },
+                        "tax" : {
+                          "id" : "TAX-44X75095YK250753B",
+                          "name" : "Sales Tax",
+                          "percent" : "7.25",
+                          "amount" : {
+                            "currency_code" : "USD",
+                            "value" : "3.27"
+                          }
+                        },
+                        "discount" : {
+                          "percent" : "5",
+                          "amount" : {
+                            "currency_code" : "USD",
+                            "value" : "-2.50"
+                          }
+                        },
+                        "unit_of_measure" : "QUANTITY"
+                      }, {
+                        "id" : "ITEM-7P311592VK142334D",
+                        "name" : "Yoga t-shirt",
+                        "quantity" : "1",
+                        "unit_amount" : {
+                          "currency_code" : "USD",
+                          "value" : "10.00"
+                        },
+                        "tax" : {
+                          "id" : "TAX-44X75095YK250753B",
+                          "name" : "Sales Tax",
+                          "percent" : "7.25",
+                          "amount" : {
+                            "currency_code" : "USD",
+                            "value" : "0.34"
+                          }
+                        },
+                        "discount" : {
+                          "amount" : {
+                            "currency_code" : "USD",
+                            "value" : "-5.00"
+                          }
+                        },
+                        "unit_of_measure" : "QUANTITY"
+                      } ],
+                      "configuration" : {
+                        "tax_calculated_after_discount" : true,
+                        "tax_inclusive" : false,
+                        "allow_tip" : true,
+                        "partial_payment" : {
+                          "allow_partial_payment" : true,
+                          "minimum_amount_due" : {
+                            "currency_code" : "USD",
+                            "value" : "20.00"
+                          }
+                        },
+                        "allow_only_pay_by_bank" : false,
+                        "allow_vba_payments" : false,
+                        "template_id" : "TEMP-19W86504SY384583V"
+                      },
+                      "amount" : {
+                        "breakdown" : {
+                          "item_total" : {
+                            "currency_code" : "USD",
+                            "value" : "60.00"
+                          },
+                          "discount" : {
+                            "invoice_discount" : {
+                              "percent" : "5",
+                              "amount" : {
+                                "currency_code" : "USD",
+                                "value" : "-2.63"
+                              }
+                            },
+                            "item_discount" : {
+                              "currency_code" : "USD",
+                              "value" : "-7.50"
+                            }
+                          },
+                          "tax_total" : {
+                            "currency_code" : "USD",
+                            "value" : "4.34"
+                          },
+                          "shipping" : {
+                            "amount" : {
+                              "currency_code" : "USD",
+                              "value" : "10.00"
+                            },
+                            "tax" : {
+                              "id" : "TAX-44X75095YK250753B",
+                              "name" : "Sales Tax",
+                              "percent" : "7.25",
+                              "amount" : {
+                                "currency_code" : "USD",
+                                "value" : "0.73"
+                              }
+                            }
+                          },
+                          "custom" : {
+                            "label" : "Packing Charges",
+                            "amount" : {
+                              "currency_code" : "USD",
+                              "value" : "10.00"
+                            }
+                          }
+                        },
+                        "currency_code" : "USD",
+                        "value" : "74.21"
+                      },
+                      "due_amount" : {
+                        "currency_code" : "USD",
+                        "value" : "74.21"
+                      },
+                      "links" : [ {
+                        "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7",
+                        "rel" : "self",
+                        "method" : "GET"
+                      }, {
+                        "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7/send",
+                        "rel" : "send",
+                        "method" : "POST"
+                      }, {
+                        "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7",
+                        "rel" : "replace",
+                        "method" : "PUT"
+                      }, {
+                        "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7",
+                        "rel" : "delete",
+                        "method" : "DELETE"
+                      }, {
+                        "href" : "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7/payments",
+                        "rel" : "record-payment",
+                        "method" : "POST"
+                      } ],
+                      "unilateral" : false
+                    }
+                  x-parameter-values:
+                    invoiceId: "INV2-JDH6-MQXR-ZXH4-NWY7"
+              schema:
+                required:
+                - amount
+                - configuration
+                - detail
+                - due_amount
+                - id
+                - invoicer
+                - items
+                - links
+                - primary_recipients
+                - status
+                - unilateral
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: INV2-JDH6-MQXR-ZXH4-NWY7
+                  status:
+                    type: string
+                    example: DRAFT
+                  detail:
+                    required:
+                    - additional_data
+                    - archived
+                    - category_code
+                    - currency_code
+                    - group_draft
+                    - invoice_date
+                    - invoice_number
+                    - memo
+                    - metadata
+                    - note
+                    - payment_term
+                    - reference
+                    - terms_and_conditions
+                    - viewed_by_recipient
+                    type: object
+                    properties:
+                      reference:
+                        type: string
+                        example: <The reference data. Includes a post office (PO) number.>
+                      currency_code:
+                        type: string
+                        example: USD
+                      note:
+                        type: string
+                        example: <A note to the invoice recipient. Also appears on the invoice notification email.>
+                      terms_and_conditions:
+                        type: string
+                        example: <The general terms of the invoice. Can include return or cancellation policy and other terms and conditions.>
+                      memo:
+                        type: string
+                        example: <A private bookkeeping note for merchant.>
+                      additional_data:
+                        type: string
+                        example: <Any additional information. Includes business hours.>
+                      category_code:
+                        type: string
+                        example: SHIPPABLE
+                      invoice_number:
+                        type: string
+                        example: "1750929409575"
+                      invoice_date:
+                        type: string
+                        example: 2022-02-04
+                      payment_term:
+                        required:
+                        - due_date
+                        - term_type
+                        type: object
+                        properties:
+                          term_type:
+                            type: string
+                            example: NET_10
+                          due_date:
+                            type: string
+                            example: 2022-02-14
+                      viewed_by_recipient:
+                        type: boolean
+                        example: false
+                      group_draft:
+                        type: boolean
+                        example: false
+                      metadata:
+                        required:
+                        - caller_type
+                        - create_time
+                        - created_by_flow
+                        - invoicer_view_url
+                        - last_update_time
+                        - recipient_view_url
+                        - spam_info
+                        type: object
+                        properties:
+                          create_time:
+                            type: string
+                            example: 2025-06-26T09:16:49Z
+                          last_update_time:
+                            type: string
+                            example: 2025-06-26T09:16:49Z
+                          created_by_flow:
+                            type: string
+                            example: REGULAR_SINGLE
+                          recipient_view_url:
+                            type: string
+                            example: https://www.sandbox.paypal.com/invoice/p/#JDH6MQXRZXH4NWY7
+                          invoicer_view_url:
+                            type: string
+                            example: https://www.sandbox.paypal.com/invoice/details/INV2-JDH6-MQXR-ZXH4-NWY7
+                          caller_type:
+                            type: string
+                            example: API_V2_INVOICE
+                          spam_info:
+                            type: object
+                      archived:
+                        type: boolean
+                        example: false
+                  invoicer:
+                    required:
+                    - additional_notes
+                    - address
+                    - logo_url
+                    - name
+                    - phones
+                    - tax_id
+                    - website
+                    type: object
+                    properties:
+                      name:
+                        required:
+                        - full_name
+                        - given_name
+                        - surname
+                        type: object
+                        properties:
+                          given_name:
+                            type: string
+                            example: David
+                          surname:
+                            type: string
+                            example: Larusso
+                          full_name:
+                            type: string
+                            example: David Larusso
+                      address:
+                        required:
+                        - address_line_1
+                        - address_line_2
+                        - admin_area_1
+                        - admin_area_2
+                        - country_code
+                        - postal_code
+                        type: object
+                        properties:
+                          address_line_1:
+                            type: string
+                            example: 123 Townsend St
+                          address_line_2:
+                            type: string
+                            example: Floor 6
+                          admin_area_2:
+                            type: string
+                            example: San Francisco
+                          admin_area_1:
+                            type: string
+                            example: CA
+                          postal_code:
+                            type: string
+                            example: "94107"
+                          country_code:
+                            type: string
+                            example: US
+                      phones:
+                        type: array
+                        items:
+                          required:
+                          - country_code
+                          - national_number
+                          - phone_type
+                          type: object
+                          properties:
+                            country_code:
+                              type: string
+                              example: "001"
+                            national_number:
+                              type: string
+                              example: "4085551234"
+                            phone_type:
+                              type: string
+                              example: MOBILE
+                      website:
+                        type: string
+                        example: www.example.com
+                      tax_id:
+                        type: string
+                        example: XX-XXXXXXX
+                      additional_notes:
+                        type: string
+                        example: <Any additional information. Includes business hours.>
+                      logo_url:
+                        type: string
+                        example: https://example.com/logo.png
+                  primary_recipients:
+                    type: array
+                    items:
+                      required:
+                      - billing_info
+                      - shipping_info
+                      type: object
+                      properties:
+                        billing_info:
+                          required:
+                          - address
+                          - email_address
+                          - name
+                          type: object
+                          properties:
+                            name:
+                              required:
+                              - full_name
+                              - given_name
+                              - surname
+                              type: object
+                              properties:
+                                given_name:
+                                  type: string
+                                  example: Stephanie
+                                surname:
+                                  type: string
+                                  example: Meyers
+                                full_name:
+                                  type: string
+                                  example: Stephanie Meyers
+                            address:
+                              required:
+                              - address_line_1
+                              - admin_area_1
+                              - admin_area_2
+                              - country_code
+                              - postal_code
+                              type: object
+                              properties:
+                                address_line_1:
+                                  type: string
+                                  example: 1234 Main Street
+                                admin_area_2:
+                                  type: string
+                                  example: Anytown
+                                admin_area_1:
+                                  type: string
+                                  example: CA
+                                postal_code:
+                                  type: string
+                                  example: "98765"
+                                country_code:
+                                  type: string
+                                  example: US
+                            email_address:
+                              type: string
+                              example: foobuyer@example.com
+                        shipping_info:
+                          required:
+                          - address
+                          - name
+                          type: object
+                          properties:
+                            name:
+                              required:
+                              - full_name
+                              - given_name
+                              - surname
+                              type: object
+                              properties:
+                                given_name:
+                                  type: string
+                                  example: Stephanie
+                                surname:
+                                  type: string
+                                  example: Meyers
+                                full_name:
+                                  type: string
+                                  example: Stephanie Meyers
+                            address:
+                              required:
+                              - address_line_1
+                              - admin_area_1
+                              - admin_area_2
+                              - country_code
+                              - postal_code
+                              type: object
+                              properties:
+                                address_line_1:
+                                  type: string
+                                  example: 1234 Main Street
+                                admin_area_2:
+                                  type: string
+                                  example: Anytown
+                                admin_area_1:
+                                  type: string
+                                  example: CA
+                                postal_code:
+                                  type: string
+                                  example: "98765"
+                                country_code:
+                                  type: string
+                                  example: US
+                  items:
+                    type: array
+                    items:
+                      required:
+                      - discount
+                      - id
+                      - name
+                      - quantity
+                      - tax
+                      - unit_amount
+                      - unit_of_measure
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: ITEM-555649919X1756543
+                        name:
+                          type: string
+                          example: Yoga Mat
+                        description:
+                          type: string
+                          example: Elastic mat to practice yoga.
+                        quantity:
+                          type: string
+                          example: "1"
+                        unit_amount:
+                          required:
+                          - currency_code
+                          - value
+                          type: object
+                          properties:
+                            currency_code:
+                              type: string
+                              example: USD
+                            value:
+                              type: string
+                              example: "50.00"
+                        tax:
+                          required:
+                          - amount
+                          - id
+                          - name
+                          - percent
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: TAX-44X75095YK250753B
+                            name:
+                              type: string
+                              example: Sales Tax
+                            percent:
+                              type: string
+                              example: "7.25"
+                            amount:
+                              required:
+                              - currency_code
+                              - value
+                              type: object
+                              properties:
+                                currency_code:
+                                  type: string
+                                  example: USD
+                                value:
+                                  type: string
+                                  example: "3.27"
+                        discount:
+                          required:
+                          - amount
+                          type: object
+                          properties:
+                            percent:
+                              type: string
+                              example: "5"
+                            amount:
+                              required:
+                              - currency_code
+                              - value
+                              type: object
+                              properties:
+                                currency_code:
+                                  type: string
+                                  example: USD
+                                value:
+                                  type: string
+                                  example: "-2.50"
+                        unit_of_measure:
+                          type: string
+                          example: QUANTITY
+                  configuration:
+                    required:
+                    - allow_only_pay_by_bank
+                    - allow_tip
+                    - allow_vba_payments
+                    - partial_payment
+                    - tax_calculated_after_discount
+                    - tax_inclusive
+                    - template_id
+                    type: object
+                    properties:
+                      tax_calculated_after_discount:
+                        type: boolean
+                        example: true
+                      tax_inclusive:
+                        type: boolean
+                        example: false
+                      allow_tip:
+                        type: boolean
+                        example: true
+                      partial_payment:
+                        required:
+                        - allow_partial_payment
+                        - minimum_amount_due
+                        type: object
+                        properties:
+                          allow_partial_payment:
+                            type: boolean
+                            example: true
+                          minimum_amount_due:
+                            required:
+                            - currency_code
+                            - value
+                            type: object
+                            properties:
+                              currency_code:
+                                type: string
+                                example: USD
+                              value:
+                                type: string
+                                example: "20.00"
+                      allow_only_pay_by_bank:
+                        type: boolean
+                        example: false
+                      allow_vba_payments:
+                        type: boolean
+                        example: false
+                      template_id:
+                        type: string
+                        example: TEMP-19W86504SY384583V
+                  amount:
+                    required:
+                    - breakdown
+                    - currency_code
+                    - value
+                    type: object
+                    properties:
+                      breakdown:
+                        required:
+                        - custom
+                        - discount
+                        - item_total
+                        - shipping
+                        - tax_total
+                        type: object
+                        properties:
+                          item_total:
+                            required:
+                            - currency_code
+                            - value
+                            type: object
+                            properties:
+                              currency_code:
+                                type: string
+                                example: USD
+                              value:
+                                type: string
+                                example: "60.00"
+                          discount:
+                            required:
+                            - invoice_discount
+                            - item_discount
+                            type: object
+                            properties:
+                              invoice_discount:
+                                required:
+                                - amount
+                                - percent
+                                type: object
+                                properties:
+                                  percent:
+                                    type: string
+                                    example: "5"
+                                  amount:
+                                    required:
+                                    - currency_code
+                                    - value
+                                    type: object
+                                    properties:
+                                      currency_code:
+                                        type: string
+                                        example: USD
+                                      value:
+                                        type: string
+                                        example: "-2.63"
+                              item_discount:
+                                required:
+                                - currency_code
+                                - value
+                                type: object
+                                properties:
+                                  currency_code:
+                                    type: string
+                                    example: USD
+                                  value:
+                                    type: string
+                                    example: "-7.50"
+                          tax_total:
+                            required:
+                            - currency_code
+                            - value
+                            type: object
+                            properties:
+                              currency_code:
+                                type: string
+                                example: USD
+                              value:
+                                type: string
+                                example: "4.34"
+                          shipping:
+                            required:
+                            - amount
+                            - tax
+                            type: object
+                            properties:
+                              amount:
+                                required:
+                                - currency_code
+                                - value
+                                type: object
+                                properties:
+                                  currency_code:
+                                    type: string
+                                    example: USD
+                                  value:
+                                    type: string
+                                    example: "10.00"
+                              tax:
+                                required:
+                                - amount
+                                - id
+                                - name
+                                - percent
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    example: TAX-44X75095YK250753B
+                                  name:
+                                    type: string
+                                    example: Sales Tax
+                                  percent:
+                                    type: string
+                                    example: "7.25"
+                                  amount:
+                                    required:
+                                    - currency_code
+                                    - value
+                                    type: object
+                                    properties:
+                                      currency_code:
+                                        type: string
+                                        example: USD
+                                      value:
+                                        type: string
+                                        example: "0.73"
+                          custom:
+                            required:
+                            - amount
+                            - label
+                            type: object
+                            properties:
+                              label:
+                                type: string
+                                example: Packing Charges
+                              amount:
+                                required:
+                                - currency_code
+                                - value
+                                type: object
+                                properties:
+                                  currency_code:
+                                    type: string
+                                    example: USD
+                                  value:
+                                    type: string
+                                    example: "10.00"
+                      currency_code:
+                        type: string
+                        example: USD
+                      value:
+                        type: string
+                        example: "74.21"
+                  due_amount:
+                    required:
+                    - currency_code
+                    - value
+                    type: object
+                    properties:
+                      currency_code:
+                        type: string
+                        example: USD
+                      value:
+                        type: string
+                        example: "74.21"
+                  links:
+                    type: array
+                    items:
+                      required:
+                      - href
+                      - method
+                      - rel
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                          example: https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-JDH6-MQXR-ZXH4-NWY7
+                        rel:
+                          type: string
+                          example: self
+                        method:
+                          type: string
+                          example: GET
+                  unilateral:
+                    type: boolean
+                    example: false
+                x-wiremock-hash: -1707512214
