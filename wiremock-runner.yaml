@@ -31,16 +31,6 @@ spec:
       labels:
         app: wiremock-runner
     spec:
-      initContainers:
-      - name: init-wiremock-dir
-        image: busybox:latest
-        command: ['sh', '-c', 'mkdir -p /work/.wiremock && cp /config/* /work/.wiremock/ && chown -R 1000:1000 /work/.wiremock && chmod -R 777 /work/.wiremock']
-        volumeMounts:
-        - name: work-volume
-          mountPath: /work
-        - name: wiremock-config
-          mountPath: /config
-          readOnly: true
       containers:
       - name: wiremock-runner
         image: wiremock/wiremock-runner:latest
@@ -62,11 +52,10 @@ spec:
         - containerPort: 8081
           name: github
         volumeMounts:
-        - name: work-volume
-          mountPath: /work
+        - name: wiremock-config
+          mountPath: /work/.wiremock
+          readOnly: true
       volumes:
-      - name: work-volume
-        emptyDir: {}
       - name: wiremock-config
         configMap:
           name: wiremock-config
