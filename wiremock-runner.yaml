@@ -1,0 +1,156 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiremock-runner
+spec:
+  selector:
+    app: wiremock-runner
+  ports:
+    - name: admin
+      port: 9999
+      targetPort: 9999
+    - name: paypal-invoicing
+      port: 8080
+      targetPort: 8080
+    - name: github-rest
+      port: 8081
+      targetPort: 8081
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiremock-runner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wiremock-runner
+  template:
+    metadata:
+      labels:
+        app: wiremock-runner
+    spec:
+      initContainers:
+      - name: init-wiremock-dir
+        image: busybox:latest
+        command: ['sh', '-c', 'mkdir -p /work/.wiremock && cp /config/* /work/.wiremock/ && chown -R 1000:1000 /work/.wiremock && chmod -R 777 /work/.wiremock']
+        volumeMounts:
+        - name: work-volume
+          mountPath: /work
+        - name: wiremock-config
+          mountPath: /config
+          readOnly: true
+      containers:
+      - name: wiremock-runner
+        image: wiremock/wiremock-runner:latest
+        env:
+        - name: WMC_DEFAULT_MODE
+          value: "serve"
+        - name: WMC_ADMIN_PORT
+          value: "9999"
+        - name: WMC_API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: wiremock-cloud-token
+              key: WMC_API_TOKEN
+        ports:
+        - containerPort: 9999
+          name: admin
+        - containerPort: 8080
+          name: paypal
+        - containerPort: 8081
+          name: github
+        volumeMounts:
+        - name: work-volume
+          mountPath: /work
+      volumes:
+      - name: work-volume
+        emptyDir: {}
+      - name: wiremock-config
+        configMap:
+          name: wiremock-config
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wiremock-runner-ingress
+  annotations:
+    # Use the appropriate ingress class for your cluster
+    # Common options: nginx, traefik, gce, alb
+    kubernetes.io/ingress.class: "nginx"
+    # Enable rewriting if using nginx ingress
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - host: wiremock.local
+    http:
+      paths:
+      # Admin API
+      - path: /admin(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: wiremock-runner
+            port:
+              number: 9999
+      # PayPal Invoicing Mock API
+      - path: /paypal(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: wiremock-runner
+            port:
+              number: 8080
+      # GitHub REST Mock API
+      - path: /github(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: wiremock-runner
+            port:
+              number: 8081
+---
+# Alternative configuration without path rewriting
+# Use this if you prefer to access services directly without path prefixes
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wiremock-runner-ingress-hostbased
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  # Admin API on separate subdomain
+  - host: admin.wiremock.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wiremock-runner
+            port:
+              number: 9999
+  # PayPal Invoicing Mock API
+  - host: paypal.wiremock.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wiremock-runner
+            port:
+              number: 8080
+  # GitHub REST Mock API
+  - host: github.wiremock.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wiremock-runner
+            port:
+              number: 8081

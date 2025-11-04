@@ -1,0 +1,16 @@
+services:
+  paypal-invoicing:
+    type: REST
+    name: "PayPal Invoicing API"
+    port: 8080
+    cloud_id: 24gzy
+    originals:
+      default: https://api-m.sandbox.paypal.com
+
+  github-rest:
+    type: REST
+    name: "GitHub REST API"
+    port: 8081
+    cloud_id: r15v6
+    originals:
+      default: https://api.github.com
