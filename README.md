@@ -11,6 +11,14 @@ This setup deploys WireMock Runner with:
 
 The mock APIs are synchronized from WireMock Cloud and can be managed through the WireMock Cloud interface.
 
+### Storage Architecture
+
+This deployment uses a **PersistentVolumeClaim** to store WireMock configuration files:
+- **Capacity**: 1Gi persistent volume (easily adjustable)
+- **No size limitations**: Unlike ConfigMaps (1MB limit), this can handle large mock API configurations
+- **Persistent data**: Configuration survives pod restarts
+- **Write access**: WireMock Runner can modify configuration files at runtime
+
 ## Prerequisites
 
 - Kubernetes cluster (local or remote)
@@ -96,9 +104,17 @@ Run the installation script:
 ```
 
 This script will:
-1. Create a ConfigMap from the `.wiremock` directory
+1. Create a PersistentVolumeClaim for storing WireMock configuration
 2. Deploy the WireMock Runner service and deployment
-3. Set up ingress rules for accessing the APIs
+3. Copy the `.wiremock` directory to the persistent volume
+4. Set proper file permissions (UID 1001:1000) for WireMock Runner
+5. Set up ingress rules for accessing the APIs
+
+**How it works:**
+- A temporary pod mounts the PersistentVolume
+- Local `.wiremock` files are copied using `kubectl cp`
+- File ownership is set to UID 1001 (the user WireMock Runner runs as)
+- The deployment's initContainer ensures correct permissions on every pod start
 
 ## Accessing the Services
 
@@ -168,6 +184,23 @@ To add more mock APIs:
 3. Add corresponding ingress rules if needed
 4. Re-run `./install-wiremock.sh`
 
+### Adjusting Storage Capacity
+
+If you need more storage for larger mock APIs, edit the PersistentVolumeClaim in `wiremock-runner.yaml`:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wiremock-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi  # Change this value as needed
+```
+
 ## Troubleshooting
 
 ### Pod not starting
@@ -177,12 +210,18 @@ Check pod events:
 kubectl describe pod -l app=wiremock-runner
 ```
 
-### ConfigMap issues
+### PersistentVolume issues
 
-Verify the ConfigMap was created:
+Verify the PVC is bound:
 ```bash
-kubectl get configmap wiremock-config
-kubectl describe configmap wiremock-config
+kubectl get pvc wiremock-data
+kubectl describe pvc wiremock-data
+```
+
+Check the contents of the persistent volume:
+```bash
+kubectl run debug --image=busybox --rm -i --restart=Never \
+  --overrides='{"spec":{"containers":[{"name":"debug","image":"busybox","command":["ls","-la","/work/.wiremock"],"volumeMounts":[{"name":"data","mountPath":"/work"}]}],"volumes":[{"name":"data","persistentVolumeClaim":{"claimName":"wiremock-data"}}]}}'
 ```
 
 ### Secret issues
@@ -207,15 +246,34 @@ kubectl port-forward service/wiremock-runner 9999:9999 &
 curl http://localhost:9999/__admin/mappings
 ```
 
+### Permission issues
+
+If you see "Write access denied" errors, verify the file ownership:
+
+```bash
+# Check file permissions in the persistent volume
+kubectl run debug --image=busybox --rm -i --restart=Never \
+  --overrides='{"spec":{"containers":[{"name":"debug","image":"busybox","command":["sh","-c","ls -la /work/.wiremock && id"],"volumeMounts":[{"name":"data","mountPath":"/work"}]}],"volumes":[{"name":"data","persistentVolumeClaim":{"claimName":"wiremock-data"}}]}}'
+
+# Files should be owned by UID 1001:1000 (the user WireMock Runner runs as)
+```
+
 ## Cleanup
 
 To remove the deployment:
 
 ```bash
+./delete-wiremock.sh
+```
+
+Or manually:
+
+```bash
 kubectl delete -f wiremock-runner.yaml
-kubectl delete configmap wiremock-config
 kubectl delete secret wiremock-cloud-token
 ```
+
+**Note:** The PersistentVolumeClaim will be deleted automatically when you delete the deployment, but the underlying PersistentVolume data retention depends on your storage class's reclaim policy.
 
 To delete the KIND cluster:
 
