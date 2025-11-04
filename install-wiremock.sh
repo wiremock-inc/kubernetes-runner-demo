@@ -23,14 +23,63 @@ if ! kubectl get secret wiremock-cloud-token &>/dev/null; then
   exit 1
 fi
 
-# Create ConfigMap from .wiremock directory
-echo "Creating ConfigMap from .wiremock directory..."
-kubectl delete configmap wiremock-config 2>/dev/null || true
-kubectl create configmap wiremock-config --from-file="$WIREMOCK_DIR"
-
-# Apply the deployment and service
+# Apply the deployment and service (which includes PVC)
 echo "Applying Kubernetes manifest..."
 kubectl apply -f "$SCRIPT_DIR/wiremock-runner.yaml"
+
+# Wait for PVC to be bound
+echo "Waiting for PersistentVolumeClaim to be bound..."
+kubectl wait --for=jsonpath='{.status.phase}'=Bound pvc/wiremock-data --timeout=60s
+
+# Create a temporary pod to copy files to the persistent volume
+echo "Copying .wiremock files to persistent volume..."
+kubectl delete pod wiremock-init 2>/dev/null || true
+
+kubectl run wiremock-init --image=busybox:latest --restart=Never \
+  --overrides='
+{
+  "spec": {
+    "containers": [
+      {
+        "name": "wiremock-init",
+        "image": "busybox:latest",
+        "command": ["sleep", "300"],
+        "volumeMounts": [
+          {
+            "name": "wiremock-data",
+            "mountPath": "/work"
+          }
+        ]
+      }
+    ],
+    "volumes": [
+      {
+        "name": "wiremock-data",
+        "persistentVolumeClaim": {
+          "claimName": "wiremock-data"
+        }
+      }
+    ]
+  }
+}'
+
+# Wait for the init pod to be ready
+kubectl wait --for=condition=ready pod/wiremock-init --timeout=60s
+
+# Copy the .wiremock directory to the persistent volume
+kubectl exec wiremock-init -- sh -c "rm -rf /work/.wiremock"
+kubectl cp "$WIREMOCK_DIR" wiremock-init:/work/.wiremock
+
+# Fix permissions on all copied files and directories
+kubectl exec wiremock-init -- sh -c "chown -R 1001:1000 /work/.wiremock && chmod -R u+rwX,go+rX /work/.wiremock"
+
+# Clean up the init pod
+kubectl delete pod wiremock-init
+
+# Restart the deployment to pick up the new files
+echo "Restarting WireMock Runner deployment..."
+kubectl rollout restart deployment/wiremock-runner
+kubectl rollout status deployment/wiremock-runner --timeout=60s
 
 echo ""
 echo "✓ WireMock Runner deployed successfully!"

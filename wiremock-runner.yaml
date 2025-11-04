@@ -1,4 +1,15 @@
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wiremock-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: wiremock-runner
@@ -32,15 +43,12 @@ spec:
         app: wiremock-runner
     spec:
       initContainers:
-      - name: init-wiremock-dir
+      - name: fix-permissions
         image: busybox:latest
-        command: ['sh', '-c', 'mkdir -p /work/.wiremock && cp /config/* /work/.wiremock/ && chown -R 1000:1000 /work/.wiremock && chmod -R 777 /work/.wiremock']
+        command: ['sh', '-c', 'chown -R 1001:1000 /work && chmod -R 755 /work']
         volumeMounts:
-        - name: work-volume
+        - name: wiremock-data
           mountPath: /work
-        - name: wiremock-config
-          mountPath: /config
-          readOnly: true
       containers:
       - name: wiremock-runner
         image: wiremock/wiremock-runner:latest
@@ -62,14 +70,12 @@ spec:
         - containerPort: 8081
           name: github
         volumeMounts:
-        - name: work-volume
+        - name: wiremock-data
           mountPath: /work
       volumes:
-      - name: work-volume
-        emptyDir: {}
-      - name: wiremock-config
-        configMap:
-          name: wiremock-config
+      - name: wiremock-data
+        persistentVolumeClaim:
+          claimName: wiremock-data
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
