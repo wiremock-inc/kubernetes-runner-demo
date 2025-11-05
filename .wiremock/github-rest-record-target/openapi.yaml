@@ -1779,3 +1779,175 @@ paths:
                     description:
                       type: object
                 x-wiremock-hash: 1484178326
+  /orgs/ministrycentered:
+    get:
+      operationId: "getOrgsMinistrycentered"
+      summary: "Get orgs ministrycentered."
+      parameters: [
+        ]
+      responses:
+        '200':
+          description: "Get orgs ministrycentered"
+          content:
+            application/json:
+              examples:
+                Get orgs ministrycentered:
+                  value: |-
+                    {
+                      "login" : "ministrycentered",
+                      "id" : 119,
+                      "node_id" : "MDEyOk9yZ2FuaXphdGlvbjExOQ==",
+                      "url" : "https://api.github.com/orgs/ministrycentered",
+                      "repos_url" : "https://api.github.com/orgs/ministrycentered/repos",
+                      "events_url" : "https://api.github.com/orgs/ministrycentered/events",
+                      "hooks_url" : "https://api.github.com/orgs/ministrycentered/hooks",
+                      "issues_url" : "https://api.github.com/orgs/ministrycentered/issues",
+                      "members_url" : "https://api.github.com/orgs/ministrycentered/members{/member}",
+                      "public_members_url" : "https://api.github.com/orgs/ministrycentered/public_members{/member}",
+                      "avatar_url" : "https://avatars.githubusercontent.com/u/119?v=4",
+                      "description" : "",
+                      "name" : "Ministry Centered Technologies",
+                      "company" : null,
+                      "blog" : "https://www.planningcenter.com",
+                      "location" : "Carlsbad, CA",
+                      "email" : null,
+                      "twitter_username" : null,
+                      "is_verified" : false,
+                      "has_organization_projects" : true,
+                      "has_repository_projects" : true,
+                      "public_repos" : 72,
+                      "public_gists" : 2,
+                      "followers" : 21,
+                      "following" : 0,
+                      "html_url" : "https://github.com/ministrycentered",
+                      "created_at" : "2008-02-02T03:50:26Z",
+                      "updated_at" : "2025-09-22T20:24:08Z",
+                      "archived_at" : null,
+                      "type" : "Organization"
+                    }
+              schema:
+                required:
+                - archived_at
+                - avatar_url
+                - blog
+                - company
+                - created_at
+                - description
+                - email
+                - events_url
+                - followers
+                - following
+                - has_organization_projects
+                - has_repository_projects
+                - hooks_url
+                - html_url
+                - id
+                - is_verified
+                - issues_url
+                - location
+                - login
+                - members_url
+                - name
+                - node_id
+                - public_gists
+                - public_members_url
+                - public_repos
+                - repos_url
+                - twitter_username
+                - type
+                - updated_at
+                - url
+                type: object
+                properties:
+                  login:
+                    type: string
+                    example: ministrycentered
+                  id:
+                    type: integer
+                    format: int32
+                    example: 119
+                  node_id:
+                    type: string
+                    example: MDEyOk9yZ2FuaXphdGlvbjExOQ==
+                  url:
+                    type: string
+                    example: https://api.github.com/orgs/ministrycentered
+                  repos_url:
+                    type: string
+                    example: https://api.github.com/orgs/ministrycentered/repos
+                  events_url:
+                    type: string
+                    example: https://api.github.com/orgs/ministrycentered/events
+                  hooks_url:
+                    type: string
+                    example: https://api.github.com/orgs/ministrycentered/hooks
+                  issues_url:
+                    type: string
+                    example: https://api.github.com/orgs/ministrycentered/issues
+                  members_url:
+                    type: string
+                    example: "https://api.github.com/orgs/ministrycentered/members{/member}"
+                  public_members_url:
+                    type: string
+                    example: "https://api.github.com/orgs/ministrycentered/public_members{/member}"
+                  avatar_url:
+                    type: string
+                    example: https://avatars.githubusercontent.com/u/119?v=4
+                  description:
+                    type: string
+                    example: ""
+                  name:
+                    type: string
+                    example: Ministry Centered Technologies
+                  company:
+                    type: object
+                  blog:
+                    type: string
+                    example: https://www.planningcenter.com
+                  location:
+                    type: string
+                    example: "Carlsbad, CA"
+                  email:
+                    type: object
+                  twitter_username:
+                    type: object
+                  is_verified:
+                    type: boolean
+                    example: false
+                  has_organization_projects:
+                    type: boolean
+                    example: true
+                  has_repository_projects:
+                    type: boolean
+                    example: true
+                  public_repos:
+                    type: integer
+                    format: int32
+                    example: 72
+                  public_gists:
+                    type: integer
+                    format: int32
+                    example: 2
+                  followers:
+                    type: integer
+                    format: int32
+                    example: 21
+                  following:
+                    type: integer
+                    format: int32
+                    example: 0
+                  html_url:
+                    type: string
+                    example: https://github.com/ministrycentered
+                  created_at:
+                    type: string
+                    example: 2008-02-02T03:50:26Z
+                  updated_at:
+                    type: string
+                    example: 2025-09-22T20:24:08Z
+                  archived_at:
+                    type: object
+                  type:
+                    type: string
+                    example: Organization
+                x-wiremock-hash: -1929694304
