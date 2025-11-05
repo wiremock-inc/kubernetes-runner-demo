@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - git-pr-workflow
-    paths:
-      - '.wiremock/**'
 
 jobs:
   deploy:
