@@ -3,7 +3,7 @@ info:
   title: "PayPal invoicing record target"
   version: "1.0.0"
 servers:
-- url: https://24gzy.wiremockapi.cloud
+- url: https://go6g6.wiremockapi.cloud
 paths:
   /v2/invoicing/invoices:
     get:

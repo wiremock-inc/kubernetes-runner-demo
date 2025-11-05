@@ -3,7 +3,6 @@ services:
     type: 'REST'
     name: 'PayPal invoicing record target'
     port: 8080
-    cloud_id: '24gzy'
     originals:
       default: https://api-m.sandbox.paypal.com
     path: './paypal-invoicing-record-target'
@@ -11,7 +10,6 @@ services:
     type: 'REST'
     name: 'GitHub REST record target'
     port: 8081
-    cloud_id: 'r15v6'
     originals:
       default: https://api.github.com
     path: './github-rest-record-target'

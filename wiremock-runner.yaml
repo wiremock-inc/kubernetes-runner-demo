@@ -55,6 +55,10 @@ spec:
         env:
         - name: WMC_DEFAULT_MODE
           value: "serve"
+        - name: WMC_RUN_PROFILE
+          value: "development"
+        - name: WMC_RECORD_MANY_PROFILE
+          value: "development"
         - name: WMC_ADMIN_PORT
           value: "9999"
         - name: WMC_API_TOKEN

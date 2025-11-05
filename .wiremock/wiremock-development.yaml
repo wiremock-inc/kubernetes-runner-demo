@@ -1,0 +1,5 @@
+services:
+  paypal-invoicing-record-target:
+    cloud_id: 'go6g6'
+  github-rest-record-target:
+    cloud_id: '7z74d'
