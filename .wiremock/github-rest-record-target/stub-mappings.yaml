@@ -1,5 +1,42 @@
 ---
 mappings:
+- id: "859fc541-412d-4435-8200-84b6ab78a74b"
+  name: "Get orgs ministrycentered"
+  request:
+    urlPathTemplate: "/orgs/ministrycentered"
+    method: "GET"
+  response:
+    status: 200
+    body: "{\"login\":\"ministrycentered\",\"id\":119,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjExOQ==\"\
+      ,\"url\":\"https://api.github.com/orgs/ministrycentered\",\"repos_url\":\"https://api.github.com/orgs/ministrycentered/repos\"\
+      ,\"events_url\":\"https://api.github.com/orgs/ministrycentered/events\",\"hooks_url\"\
+      :\"https://api.github.com/orgs/ministrycentered/hooks\",\"issues_url\":\"https://api.github.com/orgs/ministrycentered/issues\"\
+      ,\"members_url\":\"https://api.github.com/orgs/ministrycentered/members{/member}\"\
+      ,\"public_members_url\":\"https://api.github.com/orgs/ministrycentered/public_members{/member}\"\
+      ,\"avatar_url\":\"https://avatars.githubusercontent.com/u/119?v=4\",\"description\"\
+      :\"\",\"name\":\"Ministry Centered Technologies\",\"company\":null,\"blog\"\
+      :\"https://www.planningcenter.com\",\"location\":\"Carlsbad, CA\",\"email\"\
+      :null,\"twitter_username\":null,\"is_verified\":false,\"has_organization_projects\"\
+      :true,\"has_repository_projects\":true,\"public_repos\":72,\"public_gists\"\
+      :2,\"followers\":21,\"following\":0,\"html_url\":\"https://github.com/ministrycentered\"\
+      ,\"created_at\":\"2008-02-02T03:50:26Z\",\"updated_at\":\"2025-09-22T20:24:08Z\"\
+      ,\"archived_at\":null,\"type\":\"Organization\"}"
+    headers:
+      Last-Modified: "Mon, 22 Sep 2025 20:24:08 GMT"
+      Strict-Transport-Security: "max-age=31536000; includeSubdomains; preload"
+      Cache-Control: "public, max-age=60, s-maxage=60"
+      ETag: "W/\"3579d0b762abc43d3f3d21b98438354fe4c417df48533007e45c925b72c04918\""
+      Vary: "Accept,Accept-Encoding, Accept, X-Requested-With"
+      Content-Type: "application/json; charset=utf-8"
+  uuid: "859fc541-412d-4435-8200-84b6ab78a74b"
+  persistent: true
+  metadata:
+    mocklab:
+      created:
+        at: "2025-11-05T13:58:41.223612127Z"
+        via: "IMPORT"
+        by: "zg5ll"
+      response-example-attachment: "Get orgs ministrycentered"
 - id: "9fa8519f-6ddb-4d55-9788-9fb238569a1e"
   name: "Get organizations"
   request:
