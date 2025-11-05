@@ -1,0 +1,38 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - git-pr-workflow
+    paths:
+      - '.wiremock/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install WireMock CLI
+        run: npm install -g @wiremock-inc/wiremock-cli
+
+      - name: Configure WireMock CLI
+        env:
+          WIREMOCK_API_TOKEN: ${{ secrets.WIREMOCK_API_TOKEN }}
+        run: |
+          wiremock config set api-token $WIREMOCK_API_TOKEN
+
+      - name: Push to staging environment
+        run: |
+          wiremock push mock-api --all --profile staging
+
+      - name: Verify deployment
+        run: |
+          echo "✅ Successfully deployed mock APIs to staging environment"
