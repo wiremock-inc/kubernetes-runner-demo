@@ -7,7 +7,7 @@ set -e
 echo "Retrieving WireMock Cloud API token from local configuration..."
 
 # Get the API token from the WireMock CLI config
-WMC_API_TOKEN=$(wiremock config get api-token)
+WMC_API_TOKEN=$(wiremock config get api_token)
 
 if [ -z "$WMC_API_TOKEN" ]; then
   echo "Error: No API token found in WireMock CLI configuration."
@@ -16,7 +16,7 @@ if [ -z "$WMC_API_TOKEN" ]; then
   echo "  wiremock login"
   echo ""
   echo "Or manually set it with:"
-  echo "  wiremock config set api-token <your-token>"
+  echo "  wiremock config set api_token <your-token>"
   exit 1
 fi
 

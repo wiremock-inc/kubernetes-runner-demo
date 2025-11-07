@@ -19,7 +19,7 @@ fi
 # Verify the secret exists
 if ! kubectl get secret wiremock-cloud-token &>/dev/null; then
   echo "Error: Secret 'wiremock-cloud-token' not found."
-  echo "Please run './set-secret.sh <your-token>' first."
+  echo "Please run './set-secret.sh' first."
   exit 1
 fi
 
