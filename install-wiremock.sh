@@ -23,6 +23,18 @@ if ! kubectl get secret wiremock-cloud-token &>/dev/null; then
   exit 1
 fi
 
+# Wait for nginx ingress admission webhook to be ready
+echo "Checking if nginx ingress admission webhook is ready..."
+if kubectl get validatingwebhookconfigurations ingress-nginx-admission &>/dev/null; then
+  echo "Waiting for nginx ingress admission webhook to be ready..."
+  kubectl wait --namespace ingress-nginx \
+    --for=condition=ready pod \
+    --selector=app.kubernetes.io/component=controller \
+    --timeout=180s
+  # Give the webhook service a moment to fully initialize
+  sleep 5
+fi
+
 # Apply the deployment and service (which includes PVC)
 echo "Applying Kubernetes manifest..."
 kubectl apply -f "$SCRIPT_DIR/wiremock-runner.yaml"

@@ -82,12 +82,10 @@ kind: Ingress
 metadata:
   name: wiremock-runner-ingress
   annotations:
-    # Use the appropriate ingress class for your cluster
-    # Common options: nginx, traefik, gce, alb
-    kubernetes.io/ingress.class: "nginx"
     # Enable rewriting if using nginx ingress
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
+  ingressClassName: nginx
   rules:
   - host: wiremock.local
     http:
@@ -123,9 +121,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: wiremock-runner-ingress-hostbased
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
 spec:
+  ingressClassName: nginx
   rules:
   # Admin API on separate subdomain
   - host: admin.local.wiremock.cloud
